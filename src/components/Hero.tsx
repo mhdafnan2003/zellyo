@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
 import heroDesktop from '../assets/image/hero-desktop.png';
@@ -9,8 +8,8 @@ import logoHero2 from '../assets/image/logo-hero-2.png';
 const Hero = () => {
     return (
         <section className="hero-section">
-            
-           
+
+
             {/* <div className="nav-container">
                 <nav className="floating-nav">
                     <div className="nav-logo">

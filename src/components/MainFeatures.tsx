@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 // Assuming bgLogo is available in your project, otherwise remove or replace
 import bgLogo from '../assets/image/large bg logo.png';
@@ -33,13 +33,13 @@ const features = [
 ];
 
 const MainFeatures = () => {
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction) => {
+  const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { current } = scrollContainerRef;
       const scrollAmount = 350; // Width of card + gap
-      
+
       if (direction === 'left') {
         current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
       } else {

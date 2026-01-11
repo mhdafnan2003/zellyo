@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 // Using the same mockup image source
 import macbookMockup from '../assets/image/hero-desktop.png';

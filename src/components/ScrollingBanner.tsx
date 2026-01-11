@@ -1,26 +1,25 @@
-import React from 'react';
 
 const banners = [
-    "Build your store fast.",
-    "No code needed.",
-    "Modern, clean templates.",
-    "Launch in minutes.",
-    "Sell your products online.",
+  "Build your store fast.",
+  "No code needed.",
+  "Modern, clean templates.",
+  "Launch in minutes.",
+  "Sell your products online.",
 ];
 
 const ScrollingBanner = () => {
-    return (
-        <div className="scrolling-banner-wrapper">
-            <div className="scrolling-track">
-                {/* Render multiple times to ensure enough length for seamless looping on large screens */}
-                {[...banners, ...banners, ...banners, ...banners].map((text, index) => (
-                    <div key={index} className="banner-item">
-                        {text}
-                    </div>
-                ))}
-            </div>
+  return (
+    <div className="scrolling-banner-wrapper">
+      <div className="scrolling-track">
+        {/* Render multiple times to ensure enough length for seamless looping on large screens */}
+        {[...banners, ...banners, ...banners, ...banners].map((text, index) => (
+          <div key={index} className="banner-item">
+            {text}
+          </div>
+        ))}
+      </div>
 
-            <style>{`
+      <style>{`
         .scrolling-banner-wrapper {
           border-top: 1px solid #101828;
           border-bottom: 1px solid #101828;
@@ -63,8 +62,8 @@ const ScrollingBanner = () => {
             }
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default ScrollingBanner;
