@@ -11,16 +11,17 @@ const About = () => {
                     <h2 className="bg-text">ABOUT ZELLYO</h2>
                     <div className="header-content">
                         <div className="header-left">
-                            <h3>Feel the Best Store-Building Experience</h3>
+                            <h3 style={{ fontSize: '2rem' }}>Feel the Best Store-Building Experience</h3>
                         </div>
+
                         <div className="header-right">
-                            <p>Zellyo makes building your online store effortless and smooth, with a clean flow that takes you from idea to launch in minutes.</p>
+                            <p style={{ textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', maxWidth: '100%' }}>Zellyo makes building your online store effortless and smooth, with a clean flow that takes you from idea to launch in minutes.</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Cards Container - Sticky Stack Wrapper */}
-                <div className="cards-stack-wrapper">
+                <div className="cards-stack-wrapper" style={{ maxWidth: '100%' }}>
 
                     {/* Card 1: What is Zellyo */}
                     <div className="sticky-card-container" style={{ '--index': 1 } as React.CSSProperties}>
@@ -31,9 +32,9 @@ const About = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                         >
-                            <div className="card-content" style={{ paddingLeft: '16vh' }}>
+                            <div className="card-content" style={{ paddingLeft: '15vh' }}>
                                 <h4>What Is Zellyo?</h4>
-                                <p>Zellyo is a simple online store builder that helps anyone create and launch a clean, modern e-commerce website—without coding or complexity. It’s built for beginners, creators, and small businesses who want to start selling quickly.</p>
+                                <p style={{ maxWidth: '100%', textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', fontWeight: '500' }}>Zellyo is a simple online store builder that helps anyone create and launch a clean, modern e-commerce website—without coding or complexity. It’s built for beginners, creators, and small businesses who want to start selling quickly.</p>
                             </div>
                             <div className="card-image-bottom">
                                 <img src={heroDesktop} alt="Dashboard Preview" />
@@ -50,9 +51,9 @@ const About = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                         >
-                            <div className="card-content" style={{ paddingLeft: '16vh' }}>
+                            <div className="card-content" style={{ paddingLeft: '15vh' }}>
                                 <h4>Why Zellyo Exists</h4>
-                                <p>Most platforms feel overloaded and confusing. Zellyo focuses on clarity and speed. A few templates, easy steps, and a smooth flow—so you can launch your store without stress or technical skills.</p>
+                                <p style={{ maxWidth: '100%', textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', fontWeight: '500', color: '#0F4C38' }}>Most platforms feel overloaded and confusing. Zellyo focuses on clarity and speed. A few templates, easy steps, and a smooth flow—so you can launch your store without stress or technical skills.</p>
                             </div>
                             <div className="card-image-bottom">
                                 <img src={heroDesktop} alt="Dashboard Preview" />
@@ -69,9 +70,9 @@ const About = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
                         >
-                            <div className="card-content" style={{ paddingLeft: '16vh' }}>
+                            <div className="card-content" style={{ paddingLeft: '15vh' }}>
                                 <h4>What You Get</h4>
-                                <p>A ready-to-use store layout, essential e-commerce features, mobile-friendly design, and a clean user experience. Zellyo gives you exactly what you need to start selling—nothing extra, nothing overwhelming.</p>
+                                <p style={{ maxWidth: '100%', textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', fontWeight: '500' }}>A ready-to-use store layout, essential e-commerce features, mobile-friendly design, and a clean user experience. Zellyo gives you exactly what you need to start selling—nothing extra, nothing overwhelming.</p>
                             </div>
                             <div className="card-image-bottom">
                                 <img src={heroDesktop} alt="Dashboard Preview" />
@@ -90,7 +91,7 @@ const About = () => {
                 }
 
                 .container {
-                    max-width: 1280px;
+                    max-width: 110vh;
                     margin: 0 auto;
                     padding: 0 40px;
                     position: relative;
@@ -110,10 +111,10 @@ const About = () => {
                     transform: translateX(-50%);
                     font-family: 'Inter', sans-serif;
                     font-weight: 800;
-                    font-size: 11vw; 
+                    font-size: 10vw; 
                     line-height: 1;
                     color: transparent; 
-                    -webkit-text-stroke: 2px #E5E5E5; 
+                    -webkit-text-stroke: 3px #E5E5E5; 
                     white-space: nowrap;
                     pointer-events: none;
                     z-index: 0;
@@ -127,7 +128,9 @@ const About = () => {
                     position: relative;
                     z-index: 1;
                     gap: 60px;
-                    padding-top: 40px;
+                    padding-top: 30px;
+                    max-width: 100%;
+                
                 }
 
                 .header-left h3 {
@@ -137,17 +140,27 @@ const About = () => {
                     line-height: 1.1;
                     color: #0E0E0E;
                     margin: 0;
-                    max-width: 450px;
+                    
+                }
+
+                .header-left {
+                    flex: 1;
+                }
+
+                .header-right {
+                    flex: 1;
                 }
 
                 .header-right p {
                     font-family: 'Inter', sans-serif;
                     font-size: 18px;
                     font-weight: 500; 
-                    color: #0E0E0E; 
-                    max-width: 400px;
+                    color:rgb(0, 0, 0); 
                     line-height: 1.5;
                     margin-top: 5px;
+                    max-width: 110vh;
+                    padding: 0;
+                    margin: 0;
                 }
 
                 /* --- Sticky Stacking Logic --- */
@@ -192,10 +205,11 @@ const About = () => {
 
                 /* --- Card Content --- */
                 .card-content {
-                    max-width: 650px;
+                    max-width: 90%;
                     margin-bottom: 40px;
                 }
-
+                
+                
                 .feature-card h4 {
                     font-family: 'Inter', sans-serif;
                     font-weight: 700;
@@ -209,7 +223,7 @@ const About = () => {
                     font-size: 18px;
                     line-height: 1.6;
                     opacity: 0.9;
-                    max-width: 580px;
+                    max-width: 990px;
                 }
 
                 /* --- Card Images --- */

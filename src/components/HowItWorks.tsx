@@ -1,341 +1,287 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-// Using the same mockup image source
-import macbookMockup from '../assets/image/hero-desktop.png';
+
+const steps = [
+    {
+        number: 1,
+        title: "Choose a Template",
+        items: [
+            "Choose from clean, modern designs",
+            "Built for easy reading and smooth shopping",
+            "Optimized for all devices",
+            "Ready to use — no setup required"
+        ],
+        bgColor: "#FFFFFF",
+        textColor: "#000000",
+        imageBg: "#D9D9D9",
+    },
+    {
+        number: 2,
+        title: "Add Your Products",
+        items: [
+            "Upload images and pricing",
+            "Write simple product details",
+            "Organize items easily",
+            "Preview everything as you go"
+        ],
+        bgColor: "#144534",
+        textColor: "#FFFFFF",
+        imageBg: "#D9D9D9",
+    },
+    {
+        number: 3,
+        title: "Set Up Basics",
+        items: [
+            "Add your store name and info",
+            "Connect payment options",
+            "Set delivery or contact details",
+            "Adjust essential settings only"
+        ],
+        bgColor: "#E3E7C5",
+        textColor: "#000000",
+        imageBg: "#D9D9D9",
+    },
+    {
+        number: 4,
+        title: "Launch Your Store",
+        items: [
+            "Publish with one click",
+            "Share your store link instantly",
+            "Start accepting orders",
+            "Update anytime as you grow"
+        ],
+        bgColor: "#FFFFFF",
+        textColor: "#000000",
+        imageBg: "#D9D9D9",
+    }
+];
 
 const HowItWorks = () => {
-    const steps = [
-        {
-            number: 1,
-            title: "Choose a Template",
-            items: [
-                "Choose from clean, modern designs",
-                "Built for easy reading and smooth shopping",
-                "Optimized for all devices",
-                "Ready to use — no setup required"
-            ],
-            bgColor: "#FFFFFF", // White
-            textColor: "#0E0E0E",
-            bulletColor: "#0E0E0E",
-            image: macbookMockup
-        },
-        {
-            number: 2,
-            title: "Add Your Products",
-            items: [
-                "Upload images and pricing",
-                "Write simple product details",
-                "Organize items easily",
-                "Preview everything as you go"
-            ],
-            bgColor: "#0F4C38", // Dark Green
-            textColor: "#FFFFFF",
-            bulletColor: "#FFFFFF",
-            image: macbookMockup
-        },
-        {
-            number: 3,
-            title: "Set Up Basics",
-            items: [
-                "Add your store name and info",
-                "Connect payment options",
-                "Set delivery or contact details",
-                "Adjust essential settings only"
-            ],
-            bgColor: "#E3E7C5", // Beige
-            textColor: "#0F4C38",
-            bulletColor: "#0F4C38",
-            image: macbookMockup
-        },
-        {
-            number: 4,
-            title: "Launch Your Store",
-            items: [
-                "Publish with one click",
-                "Share your store link instantly",
-                "Start accepting orders",
-                "Update anytime as you grow"
-            ],
-            bgColor: "#D4D4D4", // Light Gray (as per design image)
-            textColor: "#0E0E0E",
-            bulletColor: "#0E0E0E",
-            image: macbookMockup
-        }
-    ];
-
     return (
-        <section className="how-it-works-section">
-            <div className="container">
+        <section className="how-it-works">
+            {/* Outline Watermark Title */}
+            <div className="watermark-container">
+                <h2 className="outline-text">HOW ZELLYO WORKS</h2>
+            </div>
 
+            <div className="content-container">
                 {/* Header Section */}
-                <div className="how-header">
-                    <h2 className="bg-text-outline">HOW ZELLYO WORKS</h2>
-                    <div className="header-flex">
-                        <div className="header-left">
-                            <h3>Your Store in a Few Easy Steps</h3>
-                        </div>
-                        <div className="header-right">
-                            <p>No clutter. No confusion. Just a clean path to your store.</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Sticky Steps Container */}
-                <div className="steps-stack-wrapper">
-                    {steps.map((step, index) => (
-                        <div
-                            key={index}
-                            className="step-sticky-container"
-                            style={{
-                                '--index': index,
-                                zIndex: index + 1
-                            } as React.CSSProperties}
-                        >
-                            <motion.div
-                                className="step-card"
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.5 }}
-                                style={{
-                                    backgroundColor: step.bgColor,
-                                    color: step.textColor
-                                }}
-                            >
-                                {/* Left Side: Image */}
-                                <div className="step-image-wrapper">
-                                    <div className="img-box">
-                                        <img src={step.image} alt={step.title} />
-                                    </div>
-                                </div>
-
-                                {/* Right Side: Content */}
-                                <div className="step-content">
-                                    <h4>Step {step.number} — {step.title}</h4>
-                                    <ul style={{ '--bullet-color': step.bulletColor } as React.CSSProperties}>
-                                        {step.items.map((item, i) => (
-                                            <li key={i}>{item}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </motion.div>
-                        </div>
-                    ))}
+                <div className="section-header">
+                    <h3 className="header-title">Your Store in a Few Easy Steps</h3>
+                    <p className="header-desc">
+                        No clutter. No confusion. Just a clean path to your store.
+                    </p>
                 </div>
             </div>
 
+            {/* Steps List */}
+            <div className="steps-list">
+                {steps.map((step, index) => (
+                    <div
+                        key={index}
+                        className={`step-row ${index === 0 ? 'first-step' : ''}`}
+                        style={{
+                            backgroundColor: step.bgColor,
+                            color: step.textColor,
+                            zIndex: index + 1
+                        }}
+                    >
+                        <div className="step-inner">
+                            {/* Left Side: Mockup Image */}
+                            <div className="image-column">
+                                <div
+                                    className="mockup-placeholder"
+                                    style={{ backgroundColor: step.imageBg }}
+                                >
+                                    {/* <img src={...} alt={step.title} /> */}
+                                </div>
+                            </div>
+
+                            {/* Right Side: Text Content */}
+                            <div className="text-column">
+                                <h4 className="step-heading">
+                                    Step {step.number} — {step.title}
+                                </h4>
+                                <ul className="step-items">
+                                    {step.items.map((item, i) => (
+                                        <li key={i}>{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
             <style>{`
-                .how-it-works-section {
-                    padding: 120px 0;
-                    background-color: #FFFFFF;
+                .how-it-works {
                     position: relative;
-                    overflow: visible; /* Important for sticky to work */
-                }
-
-                .container {
-                    max-width: 1280px;
-                    margin: 0 auto;
-                    padding: 0 40px;
-                    position: relative;
-                }
-
-                /* --- Header Styles --- */
-                .how-header {
-                    position: relative;
-                    margin-bottom: 80px;
-                    padding-top: 40px;
-                }
-
-                .bg-text-outline {
-                    position: absolute;
-                    top: -60px;
-                    left: 50%;
-                    transform: translateX(-50%);
+                    background-color: #ffffffff;
                     font-family: 'Inter', sans-serif;
-                    font-weight: 900;
-                    font-size: 8vw; 
-                    color: transparent; 
-                    -webkit-text-stroke: 1.2px #E5E5E5; 
-                    white-space: nowrap;
+                }
+
+                /* Watermark Styling - Top Centered */
+                .watermark-container {
+                    position: absolute;
+                    top: 20px;
+                    left: 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
                     z-index: 0;
                     pointer-events: none;
                 }
 
-                .header-flex {
+                .outline-text {
+                    font-size: clamp(60px, 7.5vw, 150px);
+                    font-weight: 900;
+                    color: transparent;
+                    -webkit-text-stroke: 1.5px #E5E5E5;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                    margin: 0;
+                    opacity: 0.6;
+                    letter-spacing: 2px;
+                }
+
+                .content-container {
+                    position: relative;
+                    z-index: 10;
+                    max-width: 1440px;
+                    margin: 0 auto;
+                }
+
+                /* Header Styling */
+                .section-header {
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
-                    position: relative;
-                    z-index: 1;
-                    padding: 0 20px;
+                    padding: 120px 80px 0px;
+                    max-width: 1440px;
+                    margin: 0 auto;
                 }
 
-                .header-left h3 {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 42px;
+                .header-title {
+                    font-size: 32px;
                     font-weight: 700;
-                    color: #0E0E0E;
-                    max-width: 500px;
+                    color: #000000;
+                    margin: 0;
+                    max-width: 450px;
                     line-height: 1.1;
+                    text-align: left;
+                }
+
+                .header-desc {
+                    font-size: 20px;
+                    font-weight: 700;
+                    color: #000000;
+                    max-width: 450px;
                     margin: 0;
+                    line-height: 1.3;
+                    text-align: left;
                 }
 
-                .header-right p {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 18px;
-                    font-weight: 600;
-                    color: #0E0E0E;
-                    max-width: 350px;
-                    line-height: 1.5;
-                    margin: 0;
-                    text-align: right;
-                }
-
-                /* --- Sticky Stacking Logic --- */
-                .steps-stack-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                    padding-bottom: 100px; /* Space at bottom of section */
-                }
-
-                .step-sticky-container {
-                    position: sticky;
-                    /* Logic: Base Top (120px) + (Index * Gap).
-                       This creates the "Stacked Deck" look where you see top of previous cards.
-                    */
-                    top: calc(120px + (var(--index) * 20px)); 
-                    margin-bottom: 40px; /* Vertical gap between cards in flow */
-                    height: auto;
-                }
-
-                /* --- Card Design --- */
-                .step-card {
-                    display: flex;
-                    align-items: center;
-                    padding: 50px;
-                    border-radius: 32px;
-                    min-height: 500px; /* Consistent height for smooth stacking */
-                    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-                    gap: 50px;
-                    overflow: hidden;
-                    /* Ensure card fills the container width */
+                /* Sticky Step Rows */
+                .step-row {
                     width: 100%;
-                    box-sizing: border-box;
+                    min-height: 100vh;
+                    position: sticky;
+                    top: 0;
+                    display: flex;
+                    align-items: center; /* Vertically centers the step-inner */
+                    justify-content: center;
+                    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
                 }
 
-                /* Left: Image */
-                .step-image-wrapper {
+                .step-row.first-step {
+                    box-shadow: none;
+                }
+
+                .step-inner {
+                    width: 100%;
+                    max-width: 1280px;
+                    margin: 0 auto;
+                    display: flex;
+                    align-items: center; /* Centers image and text relative to each other */
+                    justify-content: center;
+                    gap: 100px; /* Spacing between image and text */
+                    padding: 0 60px;
+                }
+
+                /* Image Column Layout */
+                .image-column {
                     flex: 1;
                     display: flex;
                     justify-content: center;
-                    align-items: center;
                 }
 
-                .img-box {
+                .mockup-placeholder {
                     width: 100%;
-                    height: auto;
-                    border-radius: 20px;
-                    overflow: hidden;
-                    /* Use background to match mockup grey placeholder if image fails */
-                    background: rgba(0,0,0,0.05); 
-                    display: flex;
+                    max-width: 520px;
+                    aspect-ratio: 1 / 1;
+                    border-radius: 40px;
+                    transition: transform 0.3s ease;
                 }
 
-                .img-box img {
-                    width: 100%;
-                    height: auto;
-                    object-fit: contain;
-                    display: block;
-                }
-
-                /* Right: Content */
-                .step-content {
+                /* Text Column Layout */
+                .text-column {
                     flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                 }
 
-                .step-content h4 {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 32px;
-                    font-weight: 700;
+                .step-heading {
+                    font-size: 36px;
+                    font-weight: 800;
                     margin: 0 0 30px 0;
-                    line-height: 1.2;
+                    letter-spacing: -1px;
                 }
 
-                .step-content ul {
+                .step-items {
                     list-style: none;
                     padding: 0;
                     margin: 0;
                 }
 
-                .step-content ul li {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 18px;
-                    font-weight: 500;
+                .step-items li {
+                    font-size: 20px;
+                    font-weight: 700;
                     margin-bottom: 16px;
-                    padding-left: 24px;
                     position: relative;
-                    line-height: 1.5;
+                    padding-left: 30px;
+                    line-height: 1.2;
                 }
 
-                /* Bullet Customization */
-                .step-content ul li::before {
+                .step-items li::before {
                     content: "•";
                     position: absolute;
                     left: 0;
-                    color: var(--bullet-color);
-                    font-weight: bold;
-                    font-size: 24px;
-                    line-height: 24px;
+                    font-size: 28px;
+                    line-height: 1;
                     top: -2px;
                 }
 
-                /* --- Responsive --- */
+                /* Mobile Responsive Adjustments */
                 @media (max-width: 1024px) {
-                    .header-flex {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        gap: 20px;
-                    }
-                    .header-right p {
-                        text-align: left;
-                    }
-                    .bg-text-outline {
-                        font-size: 14vw;
-                        top: -30px;
-                    }
-                    .step-card {
-                        padding: 40px;
-                        gap: 30px;
-                    }
+                    .step-inner { gap: 50px; }
+                    .header-title { font-size: 24px; }
+                    .step-heading { font-size: 28px; }
                 }
 
                 @media (max-width: 768px) {
-                    .step-sticky-container {
-                        /* Reduce sticky offset on mobile to save screen space */
-                        top: calc(100px + (var(--index) * 10px));
+                    .step-inner { 
+                        flex-direction: column; 
+                        text-align: left; 
+                        padding: 120px 30px 60px;
                     }
-
-                    .step-card {
-                        flex-direction: column;
-                        text-align: center;
-                        padding: 30px;
-                        min-height: auto;
+                    .step-row { 
+                        min-height: auto; 
+                        position: relative; 
                     }
-
-                    .step-image-wrapper {
-                        width: 100%;
-                        margin-bottom: 20px;
-                    }
-
-                    .step-content ul li {
-                        text-align: left;
-                        display: inline-block;
-                    }
-                    
-                    /* Align bullets nicely even when centered */
-                    .step-content ul {
-                        display: inline-block;
-                        text-align: left;
-                    }
+                    .image-column { width: 100%; }
+                    .mockup-placeholder { max-width: 400px; border-radius: 24px; }
+                    .section-header { padding: 80px 30px 20px; flex-direction: column; gap: 20px; }
                 }
             `}</style>
         </section>

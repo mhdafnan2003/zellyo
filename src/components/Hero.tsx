@@ -48,7 +48,8 @@ const Hero = () => {
                     </div>
 
                     {/* Headline */}
-                    <h1>
+
+                    <h1 style={{ fontFamily: '"Samsung Sharp Sans", sans-serif', fontSize: '2.3rem' }}>
                         Launch a beautiful online store in minutes with Zellyo <br className="desktop-break" />
                         simple, fast, and built for creators.
                     </h1>
@@ -265,7 +266,7 @@ const Hero = () => {
                 .bg-logo {
                     position: absolute;
                     width: 300px; 
-                    opacity: 0.15; /* Subtle fade */
+                    opacity: 0.5; /* Subtle fade */
                     pointer-events: none;
                     z-index: 0;
                 }
@@ -290,17 +291,18 @@ const Hero = () => {
                     justify-content: center; /* Center the desktop img */
                     z-index: 1;
                     /* Padding bottom to allow mobile phone to hang off if needed */
-                    padding-bottom: 50px; 
+                    padding-bottom: 0vh; 
                 }
 
                 .mockup-desktop {
                     width: 85%;
                     height: auto;
-                    border-radius: 16px;
+                    border-radius: 10px;
                     box-shadow: 0 20px 60px rgba(0,0,0,0.1);
                     display: block;
                     position: relative;
                     z-index: 1;
+                    
                 }
 
                 .mockup-mobile {

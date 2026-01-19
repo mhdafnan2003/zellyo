@@ -3,7 +3,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="container footer-content">
                 <div className="footer-brand">
-                    <div className="logo-text">Zellyo</div>
+                    <img src="/Logo White.png" alt="Zellyo" style={{ height: '50px', marginBottom: '24px' }} />
                     <p>The next generation e-commerce platform for modern brand builders and creators.</p>
                 </div>
 

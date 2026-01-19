@@ -1,34 +1,36 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-// Assuming bgLogo is available in your project, otherwise remove or replace
-import bgLogo from '../assets/image/large bg logo.png';
+import { Store, CreditCard, Smartphone, Layout } from 'lucide-react';
 
-// Keep your existing asset constants
-const imgMockup = "http://localhost:3845/assets/c1ab325a8363006ac04b039ac286614e8490f88b.png";
+// Assets
+const bgZellyoLogo = "/bg-logo-new.png";
 const imgArrowLeft = "http://localhost:3845/assets/fbcc9b9305d6abaf1c7e36abb21fc74d87b6de2f.svg";
 const imgArrowRight = "http://localhost:3845/assets/6fd2920efab2ab699a0e648f5f177455b1802b8d.svg";
-const imgStoreIcon = "http://localhost:3845/assets/e1f6184f01503de3bcd0c3a30b0e3e80c3eba305.svg";
 
 const features = [
   {
     title: "Fast Store Setup",
     description: "Create and launch your store in just a few steps no tech skills needed.",
-    image: imgMockup,
+    icon: <Store size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
+    image: "/src/assets/image/hero-mobile.png",
   },
   {
     title: "Modern Templates",
     description: "Choose from clean, professional layouts designed for better shopping experiences.",
-    image: imgMockup,
+    icon: <Layout size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
+    image: "/src/assets/image/hero-mobile.png",
   },
   {
     title: "Smooth Checkout",
     description: "A simple, distraction-free checkout that helps you convert more customers.",
-    image: imgMockup,
+    icon: <CreditCard size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
+    image: "/src/assets/image/hero-mobile.png",
   },
   {
     title: "Mobile-Friendly Design",
     description: "Your store looks great on every device, automatically.",
-    image: imgMockup,
+    icon: <Smartphone size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
+    image: "/src/assets/image/hero-mobile.png",
   }
 ];
 
@@ -37,42 +39,59 @@ const MainFeatures = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const { current } = scrollContainerRef;
-      const scrollAmount = 350; // Width of card + gap
+      const scrollAmount = 412; // Card width + gap
+      const newScrollLeft = direction === 'left'
+        ? scrollContainerRef.current.scrollLeft - scrollAmount
+        : scrollContainerRef.current.scrollLeft + scrollAmount;
 
-      if (direction === 'left') {
-        current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      } else {
-        current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      }
+      scrollContainerRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
     <section className="main-features">
-      {/* Background Decorative Logo */}
-      <div className="bg-logo-overlay">
-        <img src={bgLogo} alt="" />
+      <div className="bg-watermark">
+        <img src={bgZellyoLogo} alt="" />
       </div>
 
       <div className="container">
         <div className="features-header">
           <div className="header-left">
-            <h2>Designed for Effortless Selling</h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Designed for Effortless Selling
+            </motion.h2>
           </div>
-          <div className="header-right">
-            <p>From setup to checkout, Zellyo keeps everything simple and focused.</p>
-            <div className="header-nav">
-              <button className="nav-btn" onClick={() => scroll('left')}>
-                <img src={imgArrowLeft} alt="Previous" />
+
+          <div className="header-right" style={{maxWidth:"32%"}}>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              From setup to checkout, Zellyo keeps everything simple and focused.
+            </motion.p>
+
+
+          </div>
+
+        </div>
+<div className="header-nav"style={{marginLeft:"89%"}}>
+              <button className="nav-btn" onClick={() => scroll('left')} aria-label="Previous">
+                <img src={imgArrowLeft} alt="" />
               </button>
-              <button className="nav-btn" onClick={() => scroll('right')}>
-                <img src={imgArrowRight} alt="Next" />
+              <button className="nav-btn" onClick={() => scroll('right')} aria-label="Next">
+                <img src={imgArrowRight} alt="" />
               </button>
             </div>
-          </div>
-        </div>
-
         <div className="features-scroll-wrapper">
           <div className="features-track" ref={scrollContainerRef}>
             {features.map((feature, index) => (
@@ -81,103 +100,115 @@ const MainFeatures = () => {
                 className="feature-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="card-top">
-                  <div className="icon-circle">
-                    <img src={imgStoreIcon} alt="" />
+                  <div className="icon-badge">
+                    {feature.icon}
                   </div>
                   <h3>{feature.title}</h3>
                   <p>{feature.description}</p>
                 </div>
-                <div className="card-bottom">
-                  <img src={feature.image} alt={feature.title} className="mockup-img" />
+
+                <div className="card-image">
+                  <img src={feature.image} alt={feature.title} />
                 </div>
               </motion.div>
             ))}
+            <div className="scroll-spacer" />
           </div>
         </div>
       </div>
 
       <style>{`
         .main-features {
-          background-color: #E3E7C5;
+          background-color: #DDE3BD;
           padding: 100px 0;
           position: relative;
           overflow: hidden;
           font-family: 'Inter', sans-serif;
         }
 
-        .bg-logo-overlay {
+        .bg-watermark {
           position: absolute;
-          top: -5%;
-          left: 50%;
-          transform: translateX(-50%) rotate(-10deg);
-          width: 90%; 
-          opacity: 0.08;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 1;
           pointer-events: none;
           z-index: 0;
         }
 
-        .bg-logo-overlay img {
+        .bg-watermark img {
           width: 100%;
+          max-width: 1200px;
           height: auto;
+          object-fit: contain;
+          transform: translateY(-20px);
         }
 
         .container {
-          max-width: 1320px;
+          max-width: 1440px;
           margin: 0 auto;
-          padding: 0 40px;
+          padding: 0 60px;
           position: relative;
           z-index: 1;
         }
 
-        /* HEADER LAYOUT - Split Grid */
         .features-header {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 40px;
-          margin-bottom: 60px;
-          align-items: start;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 10px;
+          gap: 20px;
+        }
+
+        .header-left {
+          flex: 1;
         }
 
         .header-left h2 {
-          font-size: 48px;
+          font-size: 40px;
           font-weight: 700;
-          color: #0E0E0E;
+          color: #000000;
           line-height: 1.1;
           margin: 0;
-          max-width: 90%;
+          letter-spacing: -1px;
+          max-width: 450px;
         }
 
         .header-right {
+          flex: 1;
           display: flex;
-          flex-direction: column;
           justify-content: space-between;
-          height: 100%;
+          align-items: flex-start;
         }
 
         .header-right p {
-          font-size: 20px;
-          font-weight: 600;
-          color: #0E0E0E;
+          font-size: 22px;
+          color: #000000;
           line-height: 1.4;
-          margin: 0 0 30px 0;
-          max-width: 500px;
+          margin: 0;
+          font-weight: 600;
+          
         }
 
         .header-nav {
           display: flex;
-          gap: 16px;
-          justify-content: flex-end; /* Align buttons to the right */
+          gap: 5px;
+          padding-top: 1px;
         }
 
         .nav-btn {
           width: 56px;
           height: 56px;
           border-radius: 50%;
-          border: 2px solid #0E0E0E;
+          border: 1.5px solid #000000;
           background: transparent;
           display: flex;
           align-items: center;
@@ -186,133 +217,103 @@ const MainFeatures = () => {
           transition: all 0.3s ease;
         }
 
-        .nav-btn img {
-          width: 24px;
-          height: 24px;
-          transition: filter 0.3s ease;
+        .nav-btn:hover {
+          background: #000000;
         }
 
-        .nav-btn:hover {
-          background: #0E0E0E;
+        .nav-btn img {
+          width: 24px;
+          filter: brightness(0);
         }
 
         .nav-btn:hover img {
           filter: invert(1);
         }
 
-        /* SCROLL CONTAINER */
-        .features-scroll-wrapper {
-          margin-right: -40px; /* Allow cards to peek off screen on right */
-        }
-
         .features-track {
           display: flex;
-          gap: 24px;
+          gap: 32px;
           overflow-x: auto;
-          padding-bottom: 20px;
-          padding-right: 40px; /* Padding for the end of scroll */
-          scrollbar-width: none; /* Firefox */
-          scroll-behavior: smooth;
+          padding: 10px 0 20px;
+          scrollbar-width: none;
+          scroll-snap-type: x mandatory;
         }
 
         .features-track::-webkit-scrollbar {
-          display: none; /* Chrome, Safari */
+          display: none;
         }
 
-        /* CARDS */
         .feature-card {
-          flex: 0 0 340px;
-          background-color: #0F4C38;
-          border-radius: 24px;
-          padding: 32px 0 0 0;
+          flex: 0 0 380px;
+          height: 560px;
+          background-color: #0B3B2D;
+          border-radius: 32px;
+          padding: 40px 32px 0;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
           position: relative;
-          height: 520px; /* Fixed height for uniformity */
+          overflow: hidden;
+          scroll-snap-align: start;
         }
 
         .card-top {
-          padding: 0 32px;
           margin-bottom: 20px;
         }
 
-        .icon-circle {
-          width: 48px;
-          height: 48px;
-          background: #fff;
-          border-radius: 50%;
+        .icon-badge {
+          width: 44px;
+          height: 44px;
+          background: #FFFFFF;
+          border-radius: 12px; /* Matching the rounded-square look in some icon sets */
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 24px;
         }
 
-        .icon-circle img {
-          width: 24px;
-          height: 24px;
-        }
-
         .feature-card h3 {
-          font-size: 24px;
+          font-size: 26px;
           font-weight: 700;
-          color: #fff;
-          margin: 0 0 12px 0;
+          color: #FFFFFF;
+          margin: 0 0 12px;
+          letter-spacing: -0.5px;
         }
 
         .feature-card p {
           font-size: 16px;
-          font-weight: 500;
-          color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+          color: rgba(255, 255, 255, 0.8);
           line-height: 1.5;
           margin: 0;
         }
 
-        .card-bottom {
-          margin-top: auto; /* Push image to bottom */
+        .card-image {
+          margin-top: auto;
           width: 100%;
           display: flex;
           justify-content: center;
-          padding: 0 20px;
         }
 
-        .mockup-img {
-          width: 100%;
+        .card-image img {
+          width: 90%;
           height: auto;
-          display: block;
+          object-fit: contain;
           border-radius: 16px 16px 0 0;
-          box-shadow: 0px -10px 40px rgba(0,0,0,0.1);
+          transform: translateY(20px);
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 992px) {
-           .features-header {
-             grid-template-columns: 1fr;
-             gap: 20px;
-           }
-           
-           .header-nav {
-             justify-content: flex-start;
-           }
+        /* Responsive */
+        @media (max-width: 1100px) {
+          .header-right {
+             flex-direction: column;
+             gap: 24px;
+          }
+          .header-left h2 { font-size: 40px; }
         }
 
         @media (max-width: 768px) {
-          .header-left h2 {
-            font-size: 32px;
-          }
-          
-          .features-scroll-wrapper {
-             margin-right: -20px;
-          }
-          
-          .container {
-             padding: 0 20px;
-          }
-          
-          .feature-card {
-             flex: 0 0 300px;
-             height: 480px;
-          }
+          .container { padding: 0 24px; }
+          .features-header { flex-direction: column; }
+          .feature-card { flex: 0 0 300px; height: 500px; }
         }
       `}</style>
     </section>

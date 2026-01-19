@@ -1,14 +1,24 @@
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
       <div className="navbar-wrapper">
-        <nav className="navbar">
+        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
           <div className="logo">
             <img src="/Logo White.png" alt="Zellyo" className="logo-img" />
           </div>
@@ -68,6 +78,14 @@ const Navbar = () => {
           max-width: 900px;
           height: 64px;
           box-shadow: 0 8px 32px rgba(15, 76, 56, 0.2);
+          transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+          background-color: rgba(15, 76, 56, 0.7);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          box-shadow: 0 8px 32px rgba(15, 76, 56, 0.3);
         }
 
         .logo-img {
