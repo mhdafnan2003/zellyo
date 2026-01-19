@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, useAnimationControls } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const themeImage = 'src/assets/image/themedemo.png';
@@ -15,11 +15,11 @@ const ThemeSection = () => {
     badge: 'free',
     image: themeImage,
   }));
-  
+
   // Create a long enough track for infinite looping
   const marqueeItems = [...baseThemes, ...baseThemes, ...baseThemes, ...baseThemes];
 
-  const ThemeCard = ({ theme }) => (
+  const ThemeCard = ({ theme }: { theme: { id: number; title: string; badge: string; image: string } }) => (
     <div className="theme-card">
       <div className="image-container">
         <img src={theme.image} alt={theme.title} />
@@ -42,12 +42,12 @@ const ThemeSection = () => {
         </div>
 
         {/* Row 1: Moves Left */}
-        <div 
+        <div
           className="marquee-wrapper"
           onMouseEnter={() => setIsTopHovered(true)}
           onMouseLeave={() => setIsTopHovered(false)}
         >
-          <motion.div 
+          <motion.div
             className="marquee-track"
             animate={{ x: isTopHovered ? undefined : [0, -1920] }}
             transition={{
@@ -68,12 +68,12 @@ const ThemeSection = () => {
         </div>
 
         {/* Row 2: Moves Right */}
-        <div 
+        <div
           className="marquee-wrapper"
           onMouseEnter={() => setIsBottomHovered(true)}
           onMouseLeave={() => setIsBottomHovered(false)}
         >
-          <motion.div 
+          <motion.div
             className="marquee-track"
             animate={{ x: isBottomHovered ? undefined : [-1920, 0] }}
             transition={{

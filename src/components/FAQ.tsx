@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 
 const faqs = [
@@ -27,11 +27,11 @@ const FAQ = () => {
     <section className="faq-section">
       <div className="faq-container">
         <h2 className="faq-title">Frequently Asked Questions</h2>
-        
+
         <div className="faq-list">
           {faqs.map((faq, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`faq-item ${openIndex === index ? 'active' : ''}`}
               onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
             >
@@ -45,7 +45,7 @@ const FAQ = () => {
                   )}
                 </div>
               </div>
-              
+
               <div className="faq-answer-wrapper">
                 <p className="faq-answer">{faq.answer}</p>
               </div>
