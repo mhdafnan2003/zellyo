@@ -12,25 +12,25 @@ const features = [
     title: "Fast Store Setup",
     description: "Create and launch your store in just a few steps no tech skills needed.",
     icon: <Store size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
-    image: "/src/assets/image/hero-mobile.png",
+    image: "/src/assets/image/hero-combined.png",
   },
   {
     title: "Modern Templates",
     description: "Choose from clean, professional layouts designed for better shopping experiences.",
     icon: <Layout size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
-    image: "/src/assets/image/hero-mobile.png",
+    image: "/src/assets/image/hero-combined.png",
   },
   {
     title: "Smooth Checkout",
     description: "A simple, distraction-free checkout that helps you convert more customers.",
     icon: <CreditCard size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
-    image: "/src/assets/image/hero-mobile.png",
+    image: "/src/assets/image/hero-combined.png",
   },
   {
     title: "Mobile-Friendly Design",
     description: "Your store looks great on every device, automatically.",
     icon: <Smartphone size={20} strokeWidth={2.5} className="text-[#0B3B2D]" />,
-    image: "/src/assets/image/hero-mobile.png",
+    image: "/src/assets/image/hero-combined.png",
   }
 ];
 
@@ -70,7 +70,7 @@ const MainFeatures = () => {
             </motion.h2>
           </div>
 
-          <div className="header-right" style={{maxWidth:"32%"}}>
+          <div className="header-right" style={{ maxWidth: "32%" }}>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -84,14 +84,14 @@ const MainFeatures = () => {
           </div>
 
         </div>
-<div className="header-nav"style={{marginLeft:"89%"}}>
-              <button className="nav-btn" onClick={() => scroll('left')} aria-label="Previous">
-                <img src={imgArrowLeft} alt="" />
-              </button>
-              <button className="nav-btn" onClick={() => scroll('right')} aria-label="Next">
-                <img src={imgArrowRight} alt="" />
-              </button>
-            </div>
+        <div className="header-nav" style={{ marginLeft: "89%" }}>
+          <button className="nav-btn" onClick={() => scroll('left')} aria-label="Previous">
+            <img src={imgArrowLeft} alt="" />
+          </button>
+          <button className="nav-btn" onClick={() => scroll('right')} aria-label="Next">
+            <img src={imgArrowRight} alt="" />
+          </button>
+        </div>
         <div className="features-scroll-wrapper">
           <div className="features-track" ref={scrollContainerRef}>
             {features.map((feature, index) => (

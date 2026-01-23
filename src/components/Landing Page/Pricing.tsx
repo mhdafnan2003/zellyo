@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 
 // Asset path as per your project structure
-import bgWatermark from '../assets/image/pricingcardlogo.png';
+import bgWatermark from '../../assets/image/pricingcardlogo.png';
 
 const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -65,12 +66,18 @@ const Pricing = () => {
   return (
     <section className="pricing-section">
       <div className="pricing-container">
-        <div className="pricing-header">
+        <motion.div
+          className="pricing-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="pricing-title">Simple, transparent pricing</h2>
           <p className="pricing-subtitle">
             Clear plans you can trust — start free and upgrade when you're ready.
           </p>
-        </div>
+        </motion.div>
 
         {/* Toggle Switch */}
         <div className="pricing-toggle">
@@ -91,9 +98,14 @@ const Pricing = () => {
         {/* Pricing Cards */}
         <div className="pricing-cards">
           {plans.map((plan, index) => (
-            <div
+            <motion.div
               key={index}
               className={`pricing-card ${plan.isPopular ? 'popular' : 'white-card'}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
               {/* Watermark Logo - Applied to ALL cards with different filters */}
               <div className="card-bg-watermark">
@@ -109,7 +121,18 @@ const Pricing = () => {
               <div className="card-content">
                 <div className="card-price">
                   <span className="currency">$</span>
-                  <span className="amount">{isAnnual ? plan.price * 10 : plan.price}</span>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={isAnnual ? 'annual' : 'monthly'}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="amount"
+                    >
+                      {isAnnual ? plan.price * 10 : plan.price}
+                    </motion.span>
+                  </AnimatePresence>
                   <span className="period">/month</span>
                 </div>
 
@@ -129,7 +152,7 @@ const Pricing = () => {
 
                 <button className="choose-btn">Choose plan</button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

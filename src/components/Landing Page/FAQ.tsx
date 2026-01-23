@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
@@ -30,26 +31,42 @@ const FAQ = () => {
 
         <div className="faq-list">
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
               className={`faq-item ${openIndex === index ? 'active' : ''}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
             >
               <div className="faq-question-row">
                 <h3>{faq.question}</h3>
                 <div className="faq-icon-wrapper">
-                  {openIndex === index ? (
+                  <motion.div
+                    animate={{ rotate: openIndex === index ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  >
                     <ChevronDown size={24} className="faq-icon" />
-                  ) : (
-                    <ChevronRight size={24} className="faq-icon" />
-                  )}
+                  </motion.div>
                 </div>
               </div>
 
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">{faq.answer}</p>
-              </div>
-            </div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="faq-answer-wrapper"
+                  >
+                    <p className="faq-answer">{faq.answer}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -136,13 +153,7 @@ const FAQ = () => {
         }
 
         .faq-answer-wrapper {
-          max-height: 0;
           overflow: hidden;
-          transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item.active .faq-answer-wrapper {
-          max-height: 200px;
         }
 
         .faq-answer {

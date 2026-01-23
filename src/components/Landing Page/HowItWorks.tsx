@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 
 const steps = [
     {
@@ -65,10 +66,24 @@ const HowItWorks = () => {
             <div className="content-container">
                 {/* Header Section */}
                 <div className="section-header">
-                    <h3 className="header-title">Your Store in a Few Easy Steps</h3>
-                    <p className="header-desc">
+                    <motion.h3
+                        className="header-title"
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        Your Store in a Few Easy Steps
+                    </motion.h3>
+                    <motion.p
+                        className="header-desc"
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
                         No clutter. No confusion. Just a clean path to your store.
-                    </p>
+                    </motion.p>
                 </div>
             </div>
 
@@ -84,29 +99,51 @@ const HowItWorks = () => {
                             zIndex: index + 1
                         }}
                     >
-                        <div className="step-inner">
+                        <motion.div
+                            className="step-inner"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.7, ease: "easeOut" }}
+                        >
                             {/* Left Side: Mockup Image */}
                             <div className="image-column">
-                                <div
+                                <motion.div
                                     className="mockup-placeholder"
                                     style={{ backgroundColor: step.imageBg }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.3 }}
                                 >
                                     {/* <img src={...} alt={step.title} /> */}
-                                </div>
+                                </motion.div>
                             </div>
 
                             {/* Right Side: Text Content */}
                             <div className="text-column">
-                                <h4 className="step-heading">
+                                <motion.h4
+                                    className="step-heading"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.3 }}
+                                >
                                     Step {step.number} — {step.title}
-                                </h4>
+                                </motion.h4>
                                 <ul className="step-items">
                                     {step.items.map((item, i) => (
-                                        <li key={i}>{item}</li>
+                                        <motion.li
+                                            key={i}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.4, delay: 0.4 + (i * 0.1) }}
+                                        >
+                                            {item}
+                                        </motion.li>
                                     ))}
                                 </ul>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 ))}
             </div>

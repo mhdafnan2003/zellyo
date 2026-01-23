@@ -2,7 +2,12 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-const Navbar = () => {
+interface NavbarProps {
+  onLoginClick: () => void;
+  onSignupClick: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onLoginClick, onSignupClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -30,9 +35,9 @@ const Navbar = () => {
             <a href="#pricing">Pricing</a>
             <a href="#testimonials">Testimonial</a>
           </div>
-
           <div className="nav-actions desktop-only">
-            <button className="btn btn-cta">Get Started</button>
+            <button className="btn btn-cta" onClick={onSignupClick}>Get Started</button>
+            <button className="btn btn-login" onClick={onLoginClick}>Login</button>
           </div>
 
           <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
@@ -50,7 +55,8 @@ const Navbar = () => {
             <a href="#about" onClick={() => setIsOpen(false)}>About</a>
             <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
             <a href="#pricing" onClick={() => setIsOpen(false)}>Pricing</a>
-            <button className="btn btn-cta w-full">Get Started</button>
+            <button className="btn btn-cta w-full" onClick={() => { onSignupClick(); setIsOpen(false); }}>Get Started</button>
+            <button className="btn btn-login w-full" onClick={() => { onLoginClick(); setIsOpen(false); }}>Login</button>
           </motion.div>
         )}
       </div>
@@ -75,8 +81,8 @@ const Navbar = () => {
           align-items: center;
           justify-content: space-between;
           width: 100%;
-          max-width: 900px;
-          height: 64px;
+          max-width: 80%;
+          height: 70px;
           box-shadow: 0 8px 32px rgba(15, 76, 56, 0.2);
           transition: all 0.3s ease;
         }
@@ -111,6 +117,12 @@ const Navbar = () => {
           opacity: 1;
         }
 
+        .nav-actions {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+
         .btn-cta {
           background-color: var(--nav-btn-bg, #E3E7C5);
           color: var(--nav-btn-text, #0F4C38);
@@ -118,12 +130,29 @@ const Navbar = () => {
           padding: 10px 24px;
           font-weight: 700;
           font-size: 15px;
-          transition: transform 0.2s ease;
+          transition: all 0.2s ease;
+          border: none;
         }
 
         .btn-cta:hover {
           transform: scale(1.05);
           background-color: #f1f4d8;
+        }
+
+        .btn-login {
+          background-color: transparent;
+          color: white;
+          border: 2px solid white;
+          border-radius: 65px;
+          padding: 8px 24px;
+          font-weight: 600;
+          font-size: 15px;
+          transition: all 0.2s ease;
+        }
+
+        .btn-login:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          transform: scale(1.05);
         }
 
         .mobile-menu-btn {

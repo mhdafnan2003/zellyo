@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import heroDesktop from '../assets/image/hero-desktop.png';
+import heroCombined from '../../assets/image/hero-combined.png';
+import whatIsZellyo from '../../assets/image/what-is-zellyo.png';
+import whyZellyoExists from '../../assets/image/why-zellyo-exists.png';
 
 const About = () => {
     return (
@@ -37,7 +39,7 @@ const About = () => {
                                 <p style={{ maxWidth: '100%', textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', fontWeight: '500' }}>Zellyo is a simple online store builder that helps anyone create and launch a clean, modern e-commerce website—without coding or complexity. It’s built for beginners, creators, and small businesses who want to start selling quickly.</p>
                             </div>
                             <div className="card-image-bottom">
-                                <img src={heroDesktop} alt="Dashboard Preview" />
+                                <img src={whatIsZellyo} alt="Dashboard Preview" />
                             </div>
                         </motion.div>
                     </div>
@@ -56,7 +58,7 @@ const About = () => {
                                 <p style={{ maxWidth: '100%', textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', fontWeight: '500', color: '#0F4C38' }}>Most platforms feel overloaded and confusing. Zellyo focuses on clarity and speed. A few templates, easy steps, and a smooth flow—so you can launch your store without stress or technical skills.</p>
                             </div>
                             <div className="card-image-bottom">
-                                <img src={heroDesktop} alt="Dashboard Preview" />
+                                <img src={whyZellyoExists} alt="Dashboard Preview" />
                             </div>
                         </motion.div>
                     </div>
@@ -75,7 +77,7 @@ const About = () => {
                                 <p style={{ maxWidth: '100%', textAlign: 'justify', fontSize: '1.2rem', lineHeight: '1.2rem', fontWeight: '500' }}>A ready-to-use store layout, essential e-commerce features, mobile-friendly design, and a clean user experience. Zellyo gives you exactly what you need to start selling—nothing extra, nothing overwhelming.</p>
                             </div>
                             <div className="card-image-bottom">
-                                <img src={heroDesktop} alt="Dashboard Preview" />
+                                <img src={heroCombined} alt="Dashboard Preview" />
                             </div>
                         </motion.div>
                     </div>
@@ -241,7 +243,7 @@ const About = () => {
                     height: auto;
                     display: block;
                     border-radius: 16px 16px 0 0;
-                    box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+                   
                 }
 
                 /* --- Responsive --- */

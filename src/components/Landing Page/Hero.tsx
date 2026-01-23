@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
-import heroDesktop from '../assets/image/hero-desktop.png';
-import heroMobile from '../assets/image/hero-mobile.png';
-import logoHero from '../assets/image/logo-hero.png';
-import logoHero2 from '../assets/image/logo-hero-2.png';
+import heroCombined from '../../assets/image/hero-combined.png';
+import logoHero from '../../assets/image/logo-hero.png';
+import logoHero2 from '../../assets/image/logo-hero-2.png';
 
-const Hero = () => {
+interface HeroProps {
+    onSignupClick: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
     return (
         <section className="hero-section">
 
@@ -55,17 +58,22 @@ const Hero = () => {
                     </h1>
 
                     {/* Buttons */}
-                    <div className="hero-btns">
-                        <button className="btn btn-beige">Book a Call</button>
-                        <button className="btn btn-green">Get Started</button>
-                    </div>
+                    <motion.div
+                        className="hero-btns"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                    >
+                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-beige">Book a Call</motion.button>
+                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-green" onClick={onSignupClick}>Get Started</motion.button>
+                    </motion.div>
                 </motion.div>
 
                 {/* 3. Hero Visuals (Mockups + BG Logos) */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                     className="hero-visuals"
                 >
                     {/* Background Decorative Logos */}
@@ -74,8 +82,7 @@ const Hero = () => {
 
                     {/* Mockups */}
                     <div className="mockup-container">
-                        <img src={heroDesktop} alt="Desktop Dashboard" className="mockup-desktop" />
-                        <img src={heroMobile} alt="Mobile App" className="mockup-mobile" />
+                        <img src={heroCombined} alt="Dashboard Preview" className="mockup-combined" />
                     </div>
                 </motion.div>
             </div>
@@ -294,24 +301,14 @@ const Hero = () => {
                     padding-bottom: 0vh; 
                 }
 
-                .mockup-desktop {
-                    width: 85%;
+                .mockup-combined {
+                    width: 100%;
                     height: auto;
                     border-radius: 10px;
-                    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+                    /* box-shadow: 0 20px 60px rgba(0,0,0,0.1); */
                     display: block;
                     position: relative;
                     z-index: 1;
-                    
-                }
-
-                .mockup-mobile {
-                    position: absolute;
-                    width: 22%; /* Approx scale relative to desktop */
-                    right: 8%; /* Adjust to overlap correctly */
-                    bottom: -20px; /* Hangs slightly below */
-                    z-index: 2;
-                    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
                 }
 
                 /* --- Responsive --- */
@@ -322,7 +319,7 @@ const Hero = () => {
                     .nav-cta-btn { margin-left: auto; margin-right: 10px; }
                     
                     h1 { font-size: 42px; }
-                    .mockup-desktop { width: 100%; }
+                    .mockup-combined { width: 100%; }
                     .bg-logo { width: 200px; }
                     .bg-left { left: -50px; top: 0; }
                     .bg-right { right: -50px; top: 50px; }
@@ -348,10 +345,8 @@ const Hero = () => {
                         margin-top: 20px;
                     }
 
-                    .mockup-mobile {
-                        width: 35%; /* Larger relative size on mobile */
-                        right: 0;
-                        bottom: -10px;
+                    .mockup-combined {
+                        width: 100%;
                     }
                 }
             `}</style>
