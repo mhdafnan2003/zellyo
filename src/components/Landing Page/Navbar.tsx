@@ -22,26 +22,41 @@ const Navbar: React.FC<NavbarProps> = ({ onLoginClick, onSignupClick }) => {
 
   return (
     <>
-      <div className="navbar-wrapper">
-        <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-          <div className="logo">
-            <img src="/Logo White.png" alt="Zellyo" className="logo-img" />
+      <div className="fixed top-6 left-0 right-0 flex justify-center z-[1000] px-6">
+        <nav className={`bg-zellyo-green rounded-[92px] px-8 flex items-center justify-between w-full max-w-[80%] h-[70px] shadow-[0_8px_32px_rgba(15,76,56,0.2)] transition-all duration-300 ${isScrolled ? 'bg-zellyo-green/70 backdrop-blur-xl shadow-[0_8px_32px_rgba(15,76,56,0.3)]' : ''
+          }`}>
+          <div>
+            <img src="/Logo White.png" alt="Zellyo" className="h-[38px] w-auto object-contain" />
           </div>
 
-          <div className="nav-links desktop-only">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#testimonials">Testimonial</a>
-          </div>
-          <div className="nav-actions desktop-only">
-            <button className="btn btn-cta" onClick={onSignupClick}>Get Started</button>
-            <button className="btn btn-login" onClick={onLoginClick}>Login</button>
+          <div className="hidden md:flex gap-8 items-center">
+            <a href="#home" className="text-white text-[15px] font-normal opacity-90 hover:opacity-100 transition-opacity">Home</a>
+            <a href="#about" className="text-white text-[15px] font-normal opacity-90 hover:opacity-100 transition-opacity">About</a>
+            <a href="#services" className="text-white text-[15px] font-normal opacity-90 hover:opacity-100 transition-opacity">Services</a>
+            <a href="#pricing" className="text-white text-[15px] font-normal opacity-90 hover:opacity-100 transition-opacity">Pricing</a>
+            <a href="#testimonials" className="text-white text-[15px] font-normal opacity-90 hover:opacity-100 transition-opacity">Testimonial</a>
           </div>
 
-          <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} color="white" /> : <Menu size={24} color="white" />}
+          <div className="hidden md:flex gap-3 items-center">
+            <button
+              onClick={onSignupClick}
+              className="bg-[#E3E7C5] text-zellyo-green rounded-[65px] px-6 py-2.5 font-bold text-[15px] border-none hover:scale-105 hover:bg-[#f1f4d8] transition-all"
+            >
+              Get Started
+            </button>
+            <button
+              onClick={onLoginClick}
+              className="bg-transparent text-white border-2 border-white rounded-[65px] px-6 py-2 font-semibold text-[15px] hover:bg-white/10 hover:scale-105 transition-all"
+            >
+              Login
+            </button>
+          </div>
+
+          <button
+            className="md:hidden block text-white"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
 
@@ -49,148 +64,27 @@ const Navbar: React.FC<NavbarProps> = ({ onLoginClick, onSignupClick }) => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mobile-menu"
+            className="absolute top-20 bg-zellyo-green w-[calc(100%-48px)] max-w-[900px] rounded-3xl p-6 flex flex-col gap-4"
           >
-            <a href="#home" onClick={() => setIsOpen(false)}>Home</a>
-            <a href="#about" onClick={() => setIsOpen(false)}>About</a>
-            <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
-            <a href="#pricing" onClick={() => setIsOpen(false)}>Pricing</a>
-            <button className="btn btn-cta w-full" onClick={() => { onSignupClick(); setIsOpen(false); }}>Get Started</button>
-            <button className="btn btn-login w-full" onClick={() => { onLoginClick(); setIsOpen(false); }}>Login</button>
+            <a href="#home" onClick={() => setIsOpen(false)} className="text-white text-base py-2 border-b border-white/10">Home</a>
+            <a href="#about" onClick={() => setIsOpen(false)} className="text-white text-base py-2 border-b border-white/10">About</a>
+            <a href="#services" onClick={() => setIsOpen(false)} className="text-white text-base py-2 border-b border-white/10">Services</a>
+            <a href="#pricing" onClick={() => setIsOpen(false)} className="text-white text-base py-2 border-b border-white/10">Pricing</a>
+            <button
+              onClick={() => { onSignupClick(); setIsOpen(false); }}
+              className="w-full bg-[#E3E7C5] text-zellyo-green rounded-[65px] px-6 py-2.5 font-bold text-[15px] border-none hover:scale-105 hover:bg-[#f1f4d8] transition-all"
+            >
+              Get Started
+            </button>
+            <button
+              onClick={() => { onLoginClick(); setIsOpen(false); }}
+              className="w-full bg-transparent text-white border-2 border-white rounded-[65px] px-6 py-2 font-semibold text-[15px] hover:bg-white/10 hover:scale-105 transition-all"
+            >
+              Login
+            </button>
           </motion.div>
         )}
       </div>
-
-      <style>{`
-        .navbar-wrapper {
-          position: fixed;
-          top: 24px;
-          left: 0;
-          right: 0;
-          display: flex;
-          justify-content: center;
-          z-index: 1000;
-          padding: 0 24px;
-        }
-
-        .navbar {
-          background-color: var(--nav-bg, #0F4C38);
-          border-radius: 92px;
-          padding: 8px 32px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          max-width: 80%;
-          height: 70px;
-          box-shadow: 0 8px 32px rgba(15, 76, 56, 0.2);
-          transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-          background-color: rgba(15, 76, 56, 0.7);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          box-shadow: 0 8px 32px rgba(15, 76, 56, 0.3);
-        }
-
-        .logo-img {
-          height: 38px;
-          width: auto;
-          object-fit: contain;
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 32px;
-          align-items: center;
-        }
-
-        .nav-links a {
-          color: white;
-          font-size: 15px;
-          font-weight: 400;
-          opacity: 0.9;
-        }
-
-        .nav-links a:hover {
-          opacity: 1;
-        }
-
-        .nav-actions {
-          display: flex;
-          gap: 12px;
-          align-items: center;
-        }
-
-        .btn-cta {
-          background-color: var(--nav-btn-bg, #E3E7C5);
-          color: var(--nav-btn-text, #0F4C38);
-          border-radius: 65px;
-          padding: 10px 24px;
-          font-weight: 700;
-          font-size: 15px;
-          transition: all 0.2s ease;
-          border: none;
-        }
-
-        .btn-cta:hover {
-          transform: scale(1.05);
-          background-color: #f1f4d8;
-        }
-
-        .btn-login {
-          background-color: transparent;
-          color: white;
-          border: 2px solid white;
-          border-radius: 65px;
-          padding: 8px 24px;
-          font-weight: 600;
-          font-size: 15px;
-          transition: all 0.2s ease;
-        }
-
-        .btn-login:hover {
-          background-color: rgba(255, 255, 255, 0.1);
-          transform: scale(1.05);
-        }
-
-        .mobile-menu-btn {
-          display: none;
-        }
-
-        .mobile-menu {
-          position: absolute;
-          top: 80px;
-          background: var(--nav-bg, #0F4C38);
-          width: calc(100% - 48px);
-          max-width: 900px;
-          border-radius: 24px;
-          padding: 24px;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .mobile-menu a {
-          color: white;
-          font-size: 16px;
-          padding: 8px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        @media (max-width: 768px) {
-          .desktop-only {
-            display: none;
-          }
-          .mobile-menu-btn {
-            display: block;
-          }
-          .navbar {
-            padding: 8px 24px;
-          }
-        }
-      `}</style>
     </>
   );
 };

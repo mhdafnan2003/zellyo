@@ -10,346 +10,80 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
     return (
-        <section className="hero-section">
-
-
-            {/* <div className="nav-container">
-                <nav className="floating-nav">
-                    <div className="nav-logo">
-                       
-                        <span className="logo-text">Zellyo</span>
-                        <div className="logo-dots">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                        </div>
-                    </div>
-                    
-                    <ul className="nav-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#testimonial">Testimonial</a></li>
-                    </ul>
-
-                    <button className="nav-cta-btn">Get Started</button>
-                </nav>
-            </div> */}
-
-            {/* 2. Hero Content */}
-            <div className="container hero-content">
+        <section className="bg-gradient-to-b from-[#EBF3EF] to-white pt-[20vh] pb-0 relative overflow-hidden font-sans min-h-screen">
+            <div className="max-w-[1280px] mx-auto px-5">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="hero-text-wrapper"
+                    className="flex flex-col items-center text-center mb-15 relative z-10"
                 >
                     {/* Badge */}
-                    <div className="badge-pill">
-                        <Zap size={18} className="icon-zap" fill="currentColor" />
+                    <div className="inline-flex items-center gap-2 px-5 py-2 bg-white border border-zellyo-green rounded-full text-base font-bold text-zellyo-green mb-6 shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
+                        <Zap size={18} className="text-amber-500" fill="currentColor" />
                         <span>Build Your Store. Your Way.</span>
                     </div>
 
                     {/* Headline */}
-
-                    <h1 style={{ fontFamily: '"Samsung Sharp Sans", sans-serif', fontSize: '2.3rem' }}>
-                        Launch a beautiful online store in minutes with Zellyo <br className="desktop-break" />
+                    <h1 className="text-[52px] leading-tight text-[#0E0E0E] font-bold tracking-tight mb-8 max-w-[900px] lg:text-[36px] md:text-[42px] max-md:text-[32px] max-md:px-2.5 font-samsung">
+                        Launch a beautiful online store in minutes with Zellyo <br className="max-md:hidden" />
                         simple, fast, and built for creators.
                     </h1>
 
                     {/* Buttons */}
                     <motion.div
-                        className="hero-btns"
+                        className="flex gap-4 max-md:w-full max-md:justify-center"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                     >
-                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-beige">Book a Call</motion.button>
-                        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-green" onClick={onSignupClick}>Get Started</motion.button>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-3.5 rounded-full font-semibold text-base bg-[#E3E7C5] text-zellyo-green hover:-translate-y-0.5 transition-transform"
+                        >
+                            Book a Call
+                        </motion.button>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-8 py-3.5 rounded-full font-semibold text-base bg-zellyo-green text-white hover:-translate-y-0.5 transition-transform"
+                            onClick={onSignupClick}
+                        >
+                            Get Started
+                        </motion.button>
                     </motion.div>
                 </motion.div>
 
-                {/* 3. Hero Visuals (Mockups + BG Logos) */}
+                {/* Hero Visuals */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="hero-visuals"
+                    className="relative w-full max-w-[1100px] mx-auto"
                 >
                     {/* Background Decorative Logos */}
-                    <img src={logoHero} alt="" className="bg-logo bg-left" />
-                    <img src={logoHero2} alt="" className="bg-logo bg-right" />
+                    <img
+                        src={logoHero}
+                        alt=""
+                        className="absolute w-[300px] opacity-50 pointer-events-none z-0 -left-[150px] top-[50px] -rotate-[15deg] lg:w-[300px] md:w-[200px] md:-left-[50px] md:top-0"
+                    />
+                    <img
+                        src={logoHero2}
+                        alt=""
+                        className="absolute w-[300px] opacity-50 pointer-events-none z-0 -right-[150px] top-[100px] rotate-[15deg] lg:w-[300px] md:w-[200px] md:-right-[50px] md:top-[50px]"
+                    />
 
                     {/* Mockups */}
-                    <div className="mockup-container">
-                        <img src={heroCombined} alt="Dashboard Preview" className="mockup-combined" />
+                    <div className="relative w-full flex justify-center z-[1] pb-0">
+                        <img
+                            src={heroCombined}
+                            alt="Dashboard Preview"
+                            className="w-full h-auto rounded-[10px] block relative z-[1]"
+                        />
                     </div>
                 </motion.div>
             </div>
-
-            <style>{`
-                /* --- Base Layout --- */
-                .hero-section {
-                    background: linear-gradient(180deg, #EBF3EF 0%, #FFFFFF 100%);
-                    padding-top: 20vh; /* Space for navbar */
-                    padding-bottom: 0;
-                    position: relative;
-                    overflow: hidden;
-                    font-family: 'Inter', sans-serif;
-                    min-height: 100vh;
-                }
-
-                .container {
-                    max-width: 1280px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
-
-                /* --- Floating Navbar --- */
-                .nav-container {
-                    display: flex;
-                    justify-content: center;
-                    margin-bottom: 80px;
-                    padding: 0 20px;
-                }
-
-                .floating-nav {
-                    background-color: #0F4C38;
-                    width: 100%;
-                    max-width: 900px;
-                    height: 70px;
-                    border-radius: 100px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 0 10px 0 30px;
-                    box-shadow: 0 10px 30px rgba(15, 76, 56, 0.15);
-                }
-
-                .nav-logo {
-                    display: flex;
-                    flex-direction: column;
-                    line-height: 1;
-                    position: relative;
-                }
-
-                .logo-text {
-                    font-family: 'cursive', sans-serif; /* Fallback for script font */
-                    font-size: 24px;
-                    color: #fff;
-                    font-weight: 400;
-                    font-style: italic;
-                }
-                
-                .logo-dots {
-                    display: flex;
-                    gap: 4px;
-                    margin-top: 2px;
-                    justify-content: center;
-                }
-
-                .dot {
-                    width: 6px;
-                    height: 6px;
-                    background-color: #fff;
-                    border-radius: 50%;
-                    border: 1px solid #0F4C38; /* Matches bg */
-                }
-
-                .nav-links {
-                    display: flex;
-                    list-style: none;
-                    gap: 30px;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                .nav-links li a {
-                    text-decoration: none;
-                    color: rgba(255, 255, 255, 0.8);
-                    font-size: 15px;
-                    font-weight: 500;
-                    transition: color 0.2s;
-                }
-
-                .nav-links li a:hover {
-                    color: #fff;
-                }
-
-                .nav-cta-btn {
-                    background-color: #E3E7C5;
-                    color: #0F4C38;
-                    border: none;
-                    padding: 12px 24px;
-                    border-radius: 100px;
-                    font-weight: 700;
-                    font-size: 14px;
-                    cursor: pointer;
-                    transition: transform 0.2s;
-                }
-
-                .nav-cta-btn:hover {
-                    transform: scale(1.05);
-                }
-
-                /* --- Text Content --- */
-                .hero-text-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    margin-bottom: 60px;
-                    position: relative;
-                    z-index: 10;
-                }
-
-                .badge-pill {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    padding: 8px 20px;
-                    background: white;
-                    border: 1px solid #0F4C38;
-                    border-radius: 100px;
-                    font-size: 16px;
-                    font-weight: 700;
-                    color: #0F4C38;
-                    margin-bottom: 24px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-                }
-
-                .icon-zap {
-                    color: #F59E0B; /* Amber/Gold color */
-                }
-
-                h1 {
-                    font-size: 52px;
-                    line-height: 1.2;
-                    color: #0E0E0E;
-                    font-weight: 700;
-                    letter-spacing: -1px;
-                    margin-bottom: 32px;
-                    max-width: 900px;
-                }
-
-                .hero-btns {
-                    display: flex;
-                    gap: 16px;
-                }
-
-                .btn {
-                    padding: 14px 32px;
-                    border-radius: 100px;
-                    font-weight: 600;
-                    font-size: 16px;
-                    cursor: pointer;
-                    border: none;
-                    transition: transform 0.2s ease;
-                }
-
-                .btn:hover {
-                    transform: translateY(-2px);
-                }
-
-                .btn-beige {
-                    background-color: #E3E7C5;
-                    color: #0F4C38;
-                }
-
-                .btn-green {
-                    background-color: #0F4C38;
-                    color: white;
-                }
-
-                /* --- Visuals & Mockups --- */
-                .hero-visuals {
-                    position: relative;
-                    width: 100%;
-                    max-width: 1100px; /* Constrain width to keep side logos visible */
-                    margin: 0 auto;
-                }
-
-                /* Background Logos */
-                .bg-logo {
-                    position: absolute;
-                    width: 300px; 
-                    opacity: 0.5; /* Subtle fade */
-                    pointer-events: none;
-                    z-index: 0;
-                }
-
-                .bg-left {
-                    left: -150px;
-                    top: 50px;
-                    transform: rotate(-15deg);
-                }
-
-                .bg-right {
-                    right: -150px;
-                    top: 100px;
-                    transform: rotate(15deg);
-                }
-
-                /* Images */
-                .mockup-container {
-                    position: relative;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center; /* Center the desktop img */
-                    z-index: 1;
-                    /* Padding bottom to allow mobile phone to hang off if needed */
-                    padding-bottom: 0vh; 
-                }
-
-                .mockup-combined {
-                    width: 100%;
-                    height: auto;
-                    border-radius: 10px;
-                    /* box-shadow: 0 20px 60px rgba(0,0,0,0.1); */
-                    display: block;
-                    position: relative;
-                    z-index: 1;
-                }
-
-                /* --- Responsive --- */
-                @media (max-width: 1024px) {
-                    .nav-links { display: none; } /* Hide links on tablet/mobile */
-                    .floating-nav { justify-content: center; padding: 0; width: auto; min-width: 300px;}
-                    .nav-logo { margin-right: auto; margin-left: 20px; }
-                    .nav-cta-btn { margin-left: auto; margin-right: 10px; }
-                    
-                    h1 { font-size: 42px; }
-                    .mockup-combined { width: 100%; }
-                    .bg-logo { width: 200px; }
-                    .bg-left { left: -50px; top: 0; }
-                    .bg-right { right: -50px; top: 50px; }
-                }
-
-                @media (max-width: 768px) {
-                    .hero-section { padding-top: 20px; }
-                    .nav-container { margin-bottom: 40px; }
-                    
-                    h1 { 
-                        font-size: 32px; 
-                        padding: 0 10px;
-                    }
-                    
-                    .desktop-break { display: none; }
-                    
-                    .hero-btns {
-                        width: 100%;
-                        justify-content: center;
-                    }
-
-                    .mockup-container {
-                        margin-top: 20px;
-                    }
-
-                    .mockup-combined {
-                        width: 100%;
-                    }
-                }
-            `}</style>
         </section>
     );
 };

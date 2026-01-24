@@ -9,59 +9,15 @@ const banners = [
 
 const ScrollingBanner = () => {
   return (
-    <div className="scrolling-banner-wrapper">
-      <div className="scrolling-track">
+    <div className="border-t border-b border-[#101828] bg-white py-5 overflow-hidden whitespace-nowrap relative z-5">
+      <div className="flex gap-[60px] animate-scroll w-max will-change-transform motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-5 motion-reduce:whitespace-normal">
         {/* Render multiple times to ensure enough length for seamless looping on large screens */}
         {[...banners, ...banners, ...banners, ...banners].map((text, index) => (
-          <div key={index} className="banner-item">
+          <div key={index} className="font-sans font-bold text-base text-black/80 shrink-0">
             {text}
           </div>
         ))}
       </div>
-
-      <style>{`
-        .scrolling-banner-wrapper {
-          border-top: 1px solid #101828;
-          border-bottom: 1px solid #101828;
-          background: white;
-          padding: 20px 0;
-          overflow: hidden;
-          white-space: nowrap;
-          position: relative;
-          z-index: 5; /* Ensure it sits nicely */
-        }
-
-        .scrolling-track {
-          display: flex;
-          gap: 60px;
-          animation: scroll 40s linear infinite;
-          width: max-content;
-          will-change: transform;
-        }
-
-        .banner-item {
-          font-family: 'Inter', sans-serif;
-          font-weight: 700;
-          font-size: 16px;
-          color: rgba(0, 0, 0, 0.77);
-          flex-shrink: 0;
-        }
-
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            .scrolling-track {
-                animation: none;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                white-space: normal;
-            }
-        }
-      `}</style>
     </div>
   );
 };

@@ -10,9 +10,9 @@ const steps = [
             "Optimized for all devices",
             "Ready to use — no setup required"
         ],
-        bgColor: "#FFFFFF",
-        textColor: "#000000",
-        imageBg: "#D9D9D9",
+        bgColor: "bg-white",
+        textColor: "text-black",
+        imageBg: "bg-[#D9D9D9]",
     },
     {
         number: 2,
@@ -23,9 +23,9 @@ const steps = [
             "Organize items easily",
             "Preview everything as you go"
         ],
-        bgColor: "#144534",
-        textColor: "#FFFFFF",
-        imageBg: "#D9D9D9",
+        bgColor: "bg-[#144534]",
+        textColor: "text-white",
+        imageBg: "bg-[#D9D9D9]",
     },
     {
         number: 3,
@@ -36,9 +36,9 @@ const steps = [
             "Set delivery or contact details",
             "Adjust essential settings only"
         ],
-        bgColor: "#E3E7C5",
-        textColor: "#000000",
-        imageBg: "#D9D9D9",
+        bgColor: "bg-[#E3E7C5]",
+        textColor: "text-black",
+        imageBg: "bg-[#D9D9D9]",
     },
     {
         number: 4,
@@ -49,25 +49,27 @@ const steps = [
             "Start accepting orders",
             "Update anytime as you grow"
         ],
-        bgColor: "#FFFFFF",
-        textColor: "#000000",
-        imageBg: "#D9D9D9",
+        bgColor: "bg-white",
+        textColor: "text-black",
+        imageBg: "bg-[#D9D9D9]",
     }
 ];
 
 const HowItWorks = () => {
     return (
-        <section className="how-it-works">
+        <section className="relative bg-white font-sans">
             {/* Outline Watermark Title */}
-            <div className="watermark-container">
-                <h2 className="outline-text">HOW ZELLYO WORKS</h2>
+            <div className="absolute top-5 left-0 w-full flex justify-center z-0 pointer-events-none">
+                <h2 className="text-[clamp(60px,7.5vw,150px)] font-black text-transparent [webkit-text-stroke:1.5px_#E5E5E5] uppercase whitespace-nowrap m-0 opacity-60 tracking-[2px]">
+                    HOW ZELLYO WORKS
+                </h2>
             </div>
 
-            <div className="content-container">
+            <div className="relative z-10 max-w-[1440px] mx-auto">
                 {/* Header Section */}
-                <div className="section-header">
+                <div className="flex justify-between items-end p-[120px_80px_0px] max-w-[1440px] mx-auto max-md:p-[80px_30px_20px] max-md:flex-col max-md:gap-5">
                     <motion.h3
-                        className="header-title"
+                        className="text-[32px] max-md:text-[24px] font-bold text-black m-0 max-w-[450px] leading-[1.1] text-left"
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -76,7 +78,7 @@ const HowItWorks = () => {
                         Your Store in a Few Easy Steps
                     </motion.h3>
                     <motion.p
-                        className="header-desc"
+                        className="text-[20px] font-bold text-black max-w-[450px] m-0 leading-[1.3] text-left"
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
@@ -88,40 +90,36 @@ const HowItWorks = () => {
             </div>
 
             {/* Steps List */}
-            <div className="steps-list">
+            <div className="flex flex-col">
                 {steps.map((step, index) => (
                     <div
                         key={index}
-                        className={`step-row ${index === 0 ? 'first-step' : ''}`}
+                        className={`w-full min-h-screen sticky top-0 flex items-center justify-center ${index === 0 ? 'shadow-none' : 'shadow-[0_-10px_30px_rgba(0,0,0,0.05)]'} ${step.bgColor} ${step.textColor}`}
                         style={{
-                            backgroundColor: step.bgColor,
-                            color: step.textColor,
                             zIndex: index + 1
                         }}
                     >
                         <motion.div
-                            className="step-inner"
+                            className="w-full max-w-[1280px] mx-auto flex items-center justify-center gap-[100px] max-lg:gap-[50px] px-[60px] max-md:flex-col max-md:text-left max-md:p-[120px_30px_60px]"
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
                         >
                             {/* Left Side: Mockup Image */}
-                            <div className="image-column">
+                            <div className="flex-1 flex justify-center w-full">
                                 <motion.div
-                                    className="mockup-placeholder"
-                                    style={{ backgroundColor: step.imageBg }}
+                                    className={`w-full max-w-[520px] max-md:max-w-[400px] aspect-square rounded-[40px] max-md:rounded-[24px] transition-transform duration-300 ${step.imageBg}`}
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.3 }}
                                 >
-                                    {/* <img src={...} alt={step.title} /> */}
                                 </motion.div>
                             </div>
 
                             {/* Right Side: Text Content */}
-                            <div className="text-column">
+                            <div className="flex-1 flex flex-col justify-center">
                                 <motion.h4
-                                    className="step-heading"
+                                    className="text-[36px] max-md:text-[28px] font-extrabold m-[0_0_30px_0] tracking-[-1px]"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
@@ -129,10 +127,11 @@ const HowItWorks = () => {
                                 >
                                     Step {step.number} — {step.title}
                                 </motion.h4>
-                                <ul className="step-items">
+                                <ul className="list-none p-0 m-0">
                                     {step.items.map((item, i) => (
                                         <motion.li
                                             key={i}
+                                            className="text-[20px] font-bold mb-4 relative pl-[30px] leading-[1.2] before:content-['•'] before:absolute before:left-0 before:text-[28px] before:leading-none before:top-[-2px]"
                                             initial={{ opacity: 0, x: -20 }}
                                             whileInView={{ opacity: 1, x: 0 }}
                                             viewport={{ once: true }}
@@ -147,178 +146,6 @@ const HowItWorks = () => {
                     </div>
                 ))}
             </div>
-
-            <style>{`
-                .how-it-works {
-                    position: relative;
-                    background-color: #ffffffff;
-                    font-family: 'Inter', sans-serif;
-                }
-
-                /* Watermark Styling - Top Centered */
-                .watermark-container {
-                    position: absolute;
-                    top: 20px;
-                    left: 0;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    z-index: 0;
-                    pointer-events: none;
-                }
-
-                .outline-text {
-                    font-size: clamp(60px, 7.5vw, 150px);
-                    font-weight: 900;
-                    color: transparent;
-                    -webkit-text-stroke: 1.5px #E5E5E5;
-                    text-transform: uppercase;
-                    white-space: nowrap;
-                    margin: 0;
-                    opacity: 0.6;
-                    letter-spacing: 2px;
-                }
-
-                .content-container {
-                    position: relative;
-                    z-index: 10;
-                    max-width: 1440px;
-                    margin: 0 auto;
-                }
-
-                /* Header Styling */
-                .section-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
-                    padding: 120px 80px 0px;
-                    max-width: 1440px;
-                    margin: 0 auto;
-                }
-
-                .header-title {
-                    font-size: 32px;
-                    font-weight: 700;
-                    color: #000000;
-                    margin: 0;
-                    max-width: 450px;
-                    line-height: 1.1;
-                    text-align: left;
-                }
-
-                .header-desc {
-                    font-size: 20px;
-                    font-weight: 700;
-                    color: #000000;
-                    max-width: 450px;
-                    margin: 0;
-                    line-height: 1.3;
-                    text-align: left;
-                }
-
-                /* Sticky Step Rows */
-                .step-row {
-                    width: 100%;
-                    min-height: 100vh;
-                    position: sticky;
-                    top: 0;
-                    display: flex;
-                    align-items: center; /* Vertically centers the step-inner */
-                    justify-content: center;
-                    box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
-                }
-
-                .step-row.first-step {
-                    box-shadow: none;
-                }
-
-                .step-inner {
-                    width: 100%;
-                    max-width: 1280px;
-                    margin: 0 auto;
-                    display: flex;
-                    align-items: center; /* Centers image and text relative to each other */
-                    justify-content: center;
-                    gap: 100px; /* Spacing between image and text */
-                    padding: 0 60px;
-                }
-
-                /* Image Column Layout */
-                .image-column {
-                    flex: 1;
-                    display: flex;
-                    justify-content: center;
-                }
-
-                .mockup-placeholder {
-                    width: 100%;
-                    max-width: 520px;
-                    aspect-ratio: 1 / 1;
-                    border-radius: 40px;
-                    transition: transform 0.3s ease;
-                }
-
-                /* Text Column Layout */
-                .text-column {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                }
-
-                .step-heading {
-                    font-size: 36px;
-                    font-weight: 800;
-                    margin: 0 0 30px 0;
-                    letter-spacing: -1px;
-                }
-
-                .step-items {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                }
-
-                .step-items li {
-                    font-size: 20px;
-                    font-weight: 700;
-                    margin-bottom: 16px;
-                    position: relative;
-                    padding-left: 30px;
-                    line-height: 1.2;
-                }
-
-                .step-items li::before {
-                    content: "•";
-                    position: absolute;
-                    left: 0;
-                    font-size: 28px;
-                    line-height: 1;
-                    top: -2px;
-                }
-
-                /* Mobile Responsive Adjustments */
-                @media (max-width: 1024px) {
-                    .step-inner { gap: 50px; }
-                    .header-title { font-size: 24px; }
-                    .step-heading { font-size: 28px; }
-                }
-
-                @media (max-width: 768px) {
-                    .step-inner { 
-                        flex-direction: column; 
-                        text-align: left; 
-                        padding: 120px 30px 60px;
-                    }
-                    .step-row { 
-                        min-height: auto; 
-                        position: relative; 
-                    }
-                    .image-column { width: 100%; }
-                    .mockup-placeholder { max-width: 400px; border-radius: 24px; }
-                    .section-header { padding: 80px 30px 20px; flex-direction: column; gap: 20px; }
-                }
-            `}</style>
         </section>
     );
 };

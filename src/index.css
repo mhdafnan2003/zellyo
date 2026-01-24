@@ -1,90 +1,72 @@
-:root {
-  --primary: #1E443A;
-  --primary-light: #B6D3C9;
-  --secondary: #7A5AF8;
-  --accent: #2E90FA;
-  --background: #F8FAF9;
-  --white: #FFFFFF;
-  --text-main: #101828;
-  --text-muted: #667085;
-  --border: #E4E7EC;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
-  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 24px;
-
-  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(16, 24, 40, 0.1), 0 2px 4px -1px rgba(16, 24, 40, 0.06);
-
-  /* Navbar Specific */
-  --nav-bg: #0F4C38;
-  --nav-btn-bg: #E3E7C5;
-  --nav-btn-text: #0F4C38;
+@font-face {
+  font-family: 'Samsung Sharp Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Samsung Sharp Sans'), url('https://fonts.cdnfonts.com/s/17880/samsungsharpsans.woff') format('woff');
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@font-face {
+  font-family: 'Samsung Sharp Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Samsung Sharp Sans'), url('https://fonts.cdnfonts.com/s/17880/samsungsharpsans-medium.woff') format('woff');
 }
 
-body {
-  font-family: var(--font-main);
-  background-color: var(--background);
-  color: var(--text-main);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+@font-face {
+  font-family: 'Samsung Sharp Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Samsung Sharp Sans'), url('https://fonts.cdnfonts.com/s/17880/samsungsharpsans-bold.woff') format('woff');
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.2s ease;
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+  }
+
+  body {
+    @apply font-sans bg-[#F8FAF9] text-[#101828] leading-normal antialiased;
+  }
+
+  a {
+    @apply no-underline text-inherit transition-all duration-200;
+  }
+
+  button {
+    @apply font-[inherit] cursor-pointer border-none bg-transparent transition-all duration-200;
+  }
+
+  ul {
+    @apply list-none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-samsung;
+  }
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-  transition: all 0.2s ease;
-}
+@layer components {
+  .container {
+    @apply max-w-[1200px] mx-auto px-6;
+  }
 
-ul {
-  list-style: none;
-}
+  .btn {
+    @apply px-6 py-3 rounded-lg font-semibold inline-flex items-center gap-2;
+  }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+  .btn-primary {
+    @apply bg-zellyo-green text-white hover:bg-zellyo-green-dark;
+  }
 
-.btn {
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-primary {
-  background-color: var(--primary);
-  color: var(--white);
-}
-
-.btn-primary:hover {
-  background-color: #2a5c4e;
-}
-
-.btn-outline {
-  border: 1px solid var(--border);
-  background-color: var(--white);
-}
-
-.btn-outline:hover {
-  background-color: #f9fafb;
+  .btn-outline {
+    @apply border border-gray-200 bg-white hover:bg-gray-50;
+  }
 }

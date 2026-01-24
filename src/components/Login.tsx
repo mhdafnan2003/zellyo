@@ -16,43 +16,46 @@ const Login: React.FC<LoginProps> = ({ onClose, onSignupClick }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="login-overlay"
+      className="fixed inset-0 bg-white z-[2000] flex overflow-hidden"
     >
-      <div className="login-container">
+      <div className="flex w-full h-full">
         {/* Left Side - Marketing */}
-        <div className="login-left">
-          <div className="login-brand">
-            <img src="/Logo White.png" alt="Zellyo" className="login-logo" />
+        <div className="flex-1 bg-zellyo-green text-white p-15 flex flex-col justify-between relative max-md:hidden">
+          <div className="text-left">
+            <img src="/Logo White.png" alt="Zellyo" className="h-12 w-auto" />
           </div>
 
-          <div className="marketing-content">
-            <h1>Launch your store in seconds.</h1>
-            <p>
+          <div className="max-w-[480px] mb-10 text-left">
+            <h1 className="text-5xl font-bold leading-[1.1] mb-6">Launch your store in seconds.</h1>
+            <p className="text-lg opacity-80 leading-[1.5] mb-10">
               No code, no stress. Build a high converting e-commerce
               site with the world's most intuitive platform.
             </p>
 
-            <div className="carousel-indicators">
-              <span className="indicator active"></span>
-              <span className="indicator"></span>
-              <span className="indicator"></span>
+            <div className="flex gap-3 items-center">
+              <span className="h-0.5 w-12 bg-white rounded-sm"></span>
+              <span className="h-0.5 w-6 bg-white/30 rounded-sm"></span>
+              <span className="h-0.5 w-6 bg-white/30 rounded-sm"></span>
             </div>
           </div>
         </div>
 
         {/* Right Side - Form */}
-        <div className="login-right">
-          <button className="close-btn" onClick={onClose}>
+        <div className="flex-[1.1] bg-zellyo-cream flex items-center justify-center relative p-10 max-sm:p-5 overflow-y-auto">
+          <button
+            className="absolute top-[30px] right-[30px] text-[#667085] p-2 rounded-full hover:bg-black/5 transition-colors duration-200"
+            onClick={onClose}
+          >
             <X size={24} />
           </button>
 
-          <div className="form-wrapper">
-            <div className="form-header">
-              <h2>Welcome back</h2>
-              <p>Please enter your details to sign in.</p>
+          <div className="w-full max-w-[440px] flex flex-col items-center">
+            <div className="text-center mb-8">
+              <h2 className="text-[32px] max-sm:text-[28px] font-bold text-[#101828] mb-2">Welcome back</h2>
+              <p className="text-[#667085] text-base">Please enter your details to sign in.</p>
             </div>
 
-            <button className="google-btn">
+            <button className="w-full flex items-center justify-center gap-3 p-3 border border-[#D0D5DD] rounded-lg bg-white text-[#344054] font-semibold text-base mb-6 hover:bg-[#f9fafb] hover:border-[#667085] transition-all duration-200">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
@@ -62,29 +65,36 @@ const Login: React.FC<LoginProps> = ({ onClose, onSignupClick }) => {
               Continue with Google
             </button>
 
-            <div className="divider">
-              <span>or with email</span>
+            <div className="w-full flex items-center mb-6">
+              <div className="flex-1 h-px bg-[#EAECF0]"></div>
+              <span className="px-4 text-[#667085] text-sm font-sans">or with email</span>
+              <div className="flex-1 h-px bg-[#EAECF0]"></div>
             </div>
 
-            <form className="login-form" onSubmit={(e) => e.preventDefault()}>
-              <div className="input-group">
-                <label>Email Address</label>
-                <input type="email" placeholder="demo@gmail.com" />
+            <form className="w-full" onSubmit={(e) => e.preventDefault()}>
+              <div className="mb-5 flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-zellyo-green-light">Email Address</label>
+                <input
+                  type="email"
+                  placeholder="demo@gmail.com"
+                  className="w-full p-[12px_14px] border border-[#D0D5DD] rounded-lg text-base bg-white focus:outline-none focus:border-zellyo-green focus:ring-4 focus:ring-zellyo-green/10 transition-all duration-200"
+                />
               </div>
 
-              <div className="input-group">
-                <div className="label-row">
-                  <label>Password</label>
-                  <a href="#" className="forgot-link">Forgot password?</a>
+              <div className="mb-5 flex flex-col gap-1.5">
+                <div className="flex justify-between items-center">
+                  <label className="text-sm font-semibold text-zellyo-green-light">Password</label>
+                  <a href="#" className="text-sm font-semibold text-zellyo-green hover:underline">Forgot password?</a>
                 </div>
-                <div className="password-wrapper">
+                <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
+                    className="w-full p-[12px_14px] border border-[#D0D5DD] rounded-lg text-base bg-white focus:outline-none focus:border-zellyo-green focus:ring-4 focus:ring-zellyo-green/10 transition-all duration-200"
                   />
                   <button
                     type="button"
-                    className="toggle-password"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#667085] hover:text-[#101828] transition-colors duration-200"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -92,358 +102,37 @@ const Login: React.FC<LoginProps> = ({ onClose, onSignupClick }) => {
                 </div>
               </div>
 
-              <div className="remember-row">
-                <label className="checkbox-container">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={() => setRememberMe(!rememberMe)}
-                  />
-                  <span className="checkmark"></span>
+              <div className="mb-6">
+                <label className="flex items-center gap-3 text-sm text-[#344054] font-semibold cursor-pointer">
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={() => setRememberMe(!rememberMe)}
+                      className="peer sr-only"
+                    />
+                    <div className="w-5 h-5 border border-[#D0D5DD] rounded-[4px] bg-white transition-all duration-200 peer-checked:bg-zellyo-green peer-checked:border-zellyo-green after:content-['✓'] after:absolute after:hidden peer-checked:after:block after:text-white after:text-sm after:top-1/2 after:left-1/2 after:-translate-x-1/2 after:-translate-y-1/2"></div>
+                  </div>
                   Remember me for 30 days
                 </label>
               </div>
 
-              <button type="submit" className="login-submit-btn">
+              <button type="submit" className="w-full p-3 bg-zellyo-green text-white rounded-lg text-base font-bold hover:bg-zellyo-green-dark transition-colors duration-200 mb-6">
                 Log in
               </button>
             </form>
 
-            <p className="signup-text">
-              Don't have an account? <button onClick={onSignupClick} style={{ color: '#0F4C38', fontWeight: 700, background: 'none', border: 'none', padding: 0 }}>Sign up for free</button>
+            <p className="text-sm text-[#667085] mb-[60px]">
+              Don't have an account? <button onClick={onSignupClick} className="text-zellyo-green font-bold bg-none border-none p-0 cursor-pointer hover:underline">Sign up for free</button>
             </p>
 
-            <div className="footer-links">
-              <a href="#">PRIVACY POLICY</a>
-              <a href="#">TERMS</a>
+            <div className="flex gap-6 mt-auto">
+              <a href="#" className="text-[#98A2B3] text-sm font-bold tracking-[0.05em] hover:text-zellyo-green transition-colors duration-200 uppercase">PRIVACY POLICY</a>
+              <a href="#" className="text-[#98A2B3] text-sm font-bold tracking-[0.05em] hover:text-zellyo-green transition-colors duration-200 uppercase">TERMS</a>
             </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        .login-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: white;
-          z-index: 2000;
-          display: flex;
-          overflow: hidden;
-        }
-
-        .login-container {
-          display: flex;
-          width: 100%;
-          height: 100%;
-        }
-
-        /* --- Left Side --- */
-        .login-left {
-          flex: 1;
-          background-color: #0F4C38;
-          color: white;
-          padding: 60px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          position: relative;
-        }
-
-        .login-logo {
-          height: 48px;
-          width: auto;
-        }
-
-        .marketing-content {
-          max-width: 480px;
-          margin-bottom: 40px;
-        }
-
-        .marketing-content h1 {
-          font-size: 48px;
-          font-weight: 700;
-          line-height: 1.1;
-          margin-bottom: 24px;
-        }
-
-        .marketing-content p {
-          font-size: 18px;
-          opacity: 0.8;
-          line-height: 1.5;
-          margin-bottom: 40px;
-        }
-
-        .carousel-indicators {
-          display: flex;
-          gap: 12px;
-          align-items: center;
-        }
-
-        .indicator {
-          height: 2px;
-          width: 24px;
-          background: rgba(255,255,255,0.3);
-          border-radius: 2px;
-        }
-
-        .indicator.active {
-          background: white;
-          width: 48px;
-        }
-
-        /* --- Right Side --- */
-        .login-right {
-          flex: 1.1;
-          background-color: #FFFEFA;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          padding: 40px;
-          overflow-y: auto;
-        }
-
-        .close-btn {
-          position: absolute;
-          top: 30px;
-          right: 30px;
-          color: #667085;
-          padding: 8px;
-          border-radius: 50%;
-          transition: background 0.2s;
-        }
-
-        .close-btn:hover {
-          background: rgba(0,0,0,0.05);
-        }
-
-        .form-wrapper {
-          width: 100%;
-          max-width: 440px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .form-header {
-          text-align: center;
-          margin-bottom: 32px;
-        }
-
-        .form-header h2 {
-          font-size: 32px;
-          font-weight: 700;
-          color: #101828;
-          margin-bottom: 8px;
-        }
-
-        .form-header p {
-          color: #667085;
-          font-size: 16px;
-        }
-
-        .google-btn {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          padding: 12px;
-          border: 1px solid #D0D5DD;
-          border-radius: 8px;
-          background: white;
-          color: #344054;
-          font-weight: 600;
-          font-size: 16px;
-          margin-bottom: 24px;
-          transition: all 0.2s;
-        }
-
-        .google-btn:hover {
-          background: #f9fafb;
-          border-color: #667085;
-        }
-
-        .divider {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          margin-bottom: 24px;
-        }
-
-        .divider::before, .divider::after {
-          content: "";
-          flex: 1;
-          height: 1px;
-          background: #EAECF0;
-        }
-
-        .divider span {
-          padding: 0 16px;
-          color: #667085;
-          font-size: 14px;
-        }
-
-        .login-form {
-          width: 100%;
-        }
-
-        .input-group {
-          margin-bottom: 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .input-group label {
-          font-size: 14px;
-          font-weight: 600;
-          color: #1a4d3c;
-        }
-
-        .input-group input {
-          width: 100%;
-          padding: 12px 14px;
-          border: 1px solid #D0D5DD;
-          border-radius: 8px;
-          font-size: 16px;
-          transition: border-color 0.2s;
-          background: white;
-        }
-
-        .input-group input:focus {
-          outline: none;
-          border-color: #0F4C38;
-          box-shadow: 0 0 0 4px rgba(15, 76, 56, 0.1);
-        }
-
-        .label-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .forgot-link {
-          font-size: 14px;
-          font-weight: 600;
-          color: #0F4C38;
-        }
-
-        .password-wrapper {
-          position: relative;
-        }
-
-        .toggle-password {
-          position: absolute;
-          right: 14px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: #667085;
-        }
-
-        .remember-row {
-          margin-bottom: 24px;
-        }
-
-        .checkbox-container {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 14px;
-          color: #344054;
-          font-weight: 600;
-          cursor: pointer;
-        }
-
-        .checkbox-container input {
-          display: none;
-        }
-
-        .checkmark {
-          width: 20px;
-          height: 20px;
-          border: 1px solid #D0D5DD;
-          border-radius: 4px;
-          position: relative;
-          transition: all 0.2s;
-        }
-
-        .checkbox-container input:checked + .checkmark {
-          background-color: #0F4C38;
-          border-color: #0F4C38;
-        }
-
-        .checkbox-container input:checked + .checkmark::after {
-          content: "✓";
-          position: absolute;
-          color: white;
-          font-size: 14px;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-
-        .login-submit-btn {
-          width: 100%;
-          padding: 12px;
-          background-color: #0F4C38;
-          color: white;
-          border-radius: 8px;
-          font-size: 16px;
-          font-weight: 700;
-          transition: background 0.2s;
-          margin-bottom: 24px;
-        }
-
-        .login-submit-btn:hover {
-          background-color: #0a3527;
-        }
-
-        .signup-text {
-          font-size: 14px;
-          color: #667085;
-          margin-bottom: 60px;
-        }
-
-        .signup-text a {
-          color: #0F4C38;
-          font-weight: 700;
-        }
-
-        .footer-links {
-          display: flex;
-          gap: 24px;
-        }
-
-        .footer-links a {
-          color: #98A2B3;
-          font-size: 14px;
-          font-weight: 700;
-          letter-spacing: 0.05em;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 900px) {
-          .login-left {
-            display: none;
-          }
-          .login-right {
-            flex: 1;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .login-right {
-            padding: 20px;
-          }
-          .form-header h2 {
-            font-size: 28px;
-          }
-        }
-      `}</style>
     </motion.div>
   );
 };

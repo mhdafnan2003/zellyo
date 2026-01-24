@@ -25,30 +25,30 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="faq-section">
-      <div className="faq-container">
-        <h2 className="faq-title">Frequently Asked Questions</h2>
+    <section className="bg-white py-[100px] px-5 font-sans">
+      <div className="max-w-[900px] mx-auto">
+        <h2 className="text-center text-[42px] max-md:text-[32px] font-extrabold text-[#144534] mb-[60px] tracking-[-1px]">Frequently Asked Questions</h2>
 
-        <div className="faq-list">
+        <div className="flex flex-col gap-5">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
-              className={`faq-item ${openIndex === index ? 'active' : ''}`}
+              className={`bg-white rounded-[20px] p-[30px_40px] max-md:p-[20px_25px] cursor-pointer transition-all duration-300 [cubic-bezier(0.4,0,0.2,1)] border border-[#F0F0F0] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] hover:-translate-y-0.5 ${openIndex === index ? 'border-[#E0E0E0] shadow-[0_10px_40px_rgba(0,0,0,0.06)]' : ''}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setOpenIndex(openIndex === index ? -1 : index)}
             >
-              <div className="faq-question-row">
-                <h3>{faq.question}</h3>
-                <div className="faq-icon-wrapper">
+              <div className="flex justify-between items-center gap-5">
+                <h3 className="text-[22px] max-md:text-[18px] font-bold text-[#1A1A4B] m-0">{faq.question}</h3>
+                <div className={`w-11 h-11 max-md:w-9 max-md:h-9 border border-[#E0E0E0] rounded-full flex items-center justify-center bg-[#F8F9FA] transition-all duration-300 ${openIndex === index ? 'bg-white' : ''}`}>
                   <motion.div
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    className="flex items-center justify-center"
                   >
-                    <ChevronDown size={24} className="faq-icon" />
+                    <ChevronDown size={24} className="text-[#333]" />
                   </motion.div>
                 </div>
               </div>
@@ -60,9 +60,9 @@ const FAQ = () => {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="faq-answer-wrapper"
+                    className="overflow-hidden"
                   >
-                    <p className="faq-answer">{faq.answer}</p>
+                    <p className="mt-5 text-[18px] leading-[1.6] text-[#6B7280] font-medium">{faq.answer}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -70,107 +70,6 @@ const FAQ = () => {
           ))}
         </div>
       </div>
-
-      <style>{`
-        .faq-section {
-          background-color: #FFFFFF;
-          padding: 100px 20px;
-          font-family: 'Inter', sans-serif;
-        }
-
-        .faq-container {
-          max-width: 900px;
-          margin: 0 auto;
-        }
-
-        .faq-title {
-          text-align: center;
-          font-size: 42px;
-          font-weight: 800;
-          color: #144534;
-          margin-bottom: 60px;
-          letter-spacing: -1px;
-        }
-
-        .faq-list {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .faq-item {
-          background: #FFFFFF;
-          border-radius: 20px;
-          padding: 30px 40px;
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          border: 1px solid #F0F0F0;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-        }
-
-        .faq-item:hover {
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-          transform: translateY(-2px);
-        }
-
-        .faq-item.active {
-          border-color: #E0E0E0;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-        }
-
-        .faq-question-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .faq-question-row h3 {
-          font-size: 22px;
-          font-weight: 700;
-          color: #1A1A4B; /* Dark navy color from image */
-          margin: 0;
-        }
-
-        .faq-icon-wrapper {
-          width: 44px;
-          height: 44px;
-          border: 1px solid #E0E0E0;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #F8F9FA;
-          transition: all 0.3s ease;
-        }
-
-        .faq-item.active .faq-icon-wrapper {
-          background: #FFFFFF;
-        }
-
-        .faq-icon {
-          color: #333;
-        }
-
-        .faq-answer-wrapper {
-          overflow: hidden;
-        }
-
-        .faq-answer {
-          margin-top: 20px;
-          font-size: 18px;
-          line-height: 1.6;
-          color: #6B7280; /* Muted gray text */
-          font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-          .faq-title { font-size: 32px; }
-          .faq-item { padding: 20px 25px; }
-          .faq-question-row h3 { font-size: 18px; }
-          .faq-icon-wrapper { width: 36px; height: 36px; }
-        }
-      `}</style>
     </section>
   );
 };

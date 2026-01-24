@@ -22,21 +22,21 @@ const Pricing = () => {
       ],
       isPopular: false,
     },
+    // {
+    //   name: 'Starter Plan',
+    //   price: 49,
+    //   description: 'Built for small businesses',
+    //   features: [
+    //     'All Free features',
+    //     'Up to 100 products',
+    //     'Email support',
+    //     'Advanced analytics',
+    //     'Better performance',
+    //   ],
+    //   isPopular: false,
+    // },
     {
-      name: 'Starter Plan',
-      price: 49,
-      description: 'Built for small businesses',
-      features: [
-        'All Free features',
-        'Up to 100 products',
-        'Email support',
-        'Advanced analytics',
-        'Better performance',
-      ],
-      isPopular: false,
-    },
-    {
-      name: 'Growth Plan',
+      name: 'Boost Plan',
       price: 100,
       description: 'Built for growing businesses',
       features: [
@@ -49,7 +49,7 @@ const Pricing = () => {
       isPopular: true,
     },
     {
-      name: 'Heavy Plan',
+      name: 'Scale Plan',
       price: 100,
       description: 'Built for growing businesses',
       features: [
@@ -64,31 +64,31 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="pricing-section">
-      <div className="pricing-container">
+    <section className="py-20 px-5 bg-white font-sans">
+      <div className="max-w-[1200px] mx-auto">
         <motion.div
-          className="pricing-header"
+          className="text-center mb-[30px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="pricing-title">Simple, transparent pricing</h2>
-          <p className="pricing-subtitle">
+          <h2 className="text-[48px] font-sans font-bold text-[#0B3B2D] mb-3 tracking-[-1px]">Simple, transparent pricing</h2>
+          <p className="text-[20px] text-[#6B7280] font-medium">
             Clear plans you can trust — start free and upgrade when you're ready.
           </p>
         </motion.div>
 
         {/* Toggle Switch */}
-        <div className="pricing-toggle">
+        <div className="flex justify-center bg-[#f3f4f6] w-fit mx-auto mb-[60px] p-1.5 rounded-[40px]">
           <button
-            className={`toggle-btn ${!isAnnual ? 'active' : ''}`}
+            className={`px-7 py-2.5 rounded-[30px] border-none text-[13px] font-extrabold cursor-pointer transition-all duration-200 ${!isAnnual ? 'bg-[#0B3B2D] text-white' : 'bg-transparent text-[#9CA3AF]'}`}
             onClick={() => setIsAnnual(false)}
           >
             MONTHLY
           </button>
           <button
-            className={`toggle-btn ${isAnnual ? 'active' : ''}`}
+            className={`px-7 py-2.5 rounded-[30px] border-none text-[13px] font-extrabold cursor-pointer transition-all duration-200 ${isAnnual ? 'bg-[#0B3B2D] text-white' : 'bg-transparent text-[#9CA3AF]'}`}
             onClick={() => setIsAnnual(true)}
           >
             YEARLY
@@ -96,31 +96,31 @@ const Pricing = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="pricing-cards">
+        <div className="flex justify-center gap-6 items-stretch max-lg:flex-col max-lg:items-center">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
-              className={`pricing-card ${plan.isPopular ? 'popular' : 'white-card'}`}
+              className={`flex-1 relative rounded-[40px] p-[60px_40px_40px] overflow-hidden transition-transform duration-300 flex flex-col max-lg:w-full max-lg:max-w-[400px] max-lg:scale-100! ${plan.isPopular ? 'bg-[#0B3B2D] text-white scale-[1.03] shadow-[0_20px_40px_rgba(11,59,45,0.2)]' : 'bg-white border border-[#E5E7EB] shadow-[0_10px_30px_rgba(0,0,0,0.03)]'}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
-              {/* Watermark Logo - Applied to ALL cards with different filters */}
-              <div className="card-bg-watermark">
+              {/* Watermark Logo */}
+              <div className="absolute top-0 right-0 w-[80%] pointer-events-none z-0">
                 <img
                   src={bgWatermark}
                   alt=""
-                  className={plan.isPopular ? 'watermark-green' : 'watermark-white'}
+                  className={`w-full h-auto translate-x-[20%] -translate-y-[10%] ${plan.isPopular ? 'brightness-100 opacity-100' : 'brightness-50 opacity-100'}`}
                 />
               </div>
 
-              {plan.isPopular && <div className="popular-tag">MOST POPULAR</div>}
+              {plan.isPopular && <div className="absolute top-[25px] right-[35px] bg-white text-[#0B3B2D] text-[11px] font-black p-[6px_14px] rounded-[20px] z-[2]">MOST POPULAR</div>}
 
-              <div className="card-content">
-                <div className="card-price">
-                  <span className="currency">$</span>
+              <div className="relative z-[1] h-full flex flex-col">
+                <div className="flex items-baseline mb-2.5">
+                  <span className="text-[38px] font-extrabold mr-1">$</span>
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={isAnnual ? 'annual' : 'monthly'}
@@ -128,21 +128,21 @@ const Pricing = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="amount"
+                      className="text-[42px] font-semibold tracking-[-2px]"
                     >
                       {isAnnual ? plan.price * 10 : plan.price}
                     </motion.span>
                   </AnimatePresence>
-                  <span className="period">/month</span>
+                  <span className={`text-[16px] font-semibold ml-1 ${plan.isPopular ? 'text-white/70' : 'text-[#6B7280]'}`}>/month</span>
                 </div>
 
-                <h3 className="plan-name">{plan.name}</h3>
-                <p className="plan-description">{plan.description}</p>
+                <h3 className="text-[24px] font-semibold mb-2">{plan.name}</h3>
+                <p className={`text-[12.5px] font-semibold mb-10 ${plan.isPopular ? 'text-white/80' : 'text-[#6B7280]'}`}>{plan.description}</p>
 
-                <ul className="feature-list">
+                <ul className="list-none p-0 m-[0_0_40px_0] flex-grow">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="feature-item">
-                      <div className="check-wrapper">
+                    <li key={idx} className="flex items-center gap-3 text-[14px] font-semibold mb-4">
+                      <div className={`flex items-center justify-center w-6 h-6 rounded-full ${plan.isPopular ? 'bg-white/20 text-white' : 'bg-[#E5E7EB] text-[#4B5563]'}`}>
                         <Check size={16} strokeWidth={3} />
                       </div>
                       <span>{feature}</span>
@@ -150,253 +150,12 @@ const Pricing = () => {
                   ))}
                 </ul>
 
-                <button className="choose-btn">Choose plan</button>
+                <button className={`w-full p-4 rounded-[40px] border-none text-[14px] font-extrabold cursor-pointer transition-all duration-200 ${plan.isPopular ? 'bg-white text-[#0B3B2D]' : 'bg-[#0B3B2D] text-white'}`}>Choose plan</button>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        .pricing-section {
-          padding: 80px 20px;
-          background-color: #FFFFFF;
-          font-family: 'Inter', sans-serif;
-        }
-
-        .pricing-container {
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .pricing-header {
-          text-align: center;
-          margin-bottom: 30px;
-        }
-
-        .pricing-title {
-          font-size: 48px;
-          font-family: 'Inter', sans-serif;
-          font-weight: 700;
-          color: #0B3B2D;
-          margin-bottom: 12px;
-          letter-spacing: -1px;
-        }
-
-        .pricing-subtitle {
-          font-size: 20px;
-          color: #6B7280;
-          font-weight: 500;
-        }
-
-        .pricing-toggle {
-          display: flex;
-          justify-content: center;
-          background: #f3f4f6;
-          width: fit-content;
-          margin: 0 auto 60px;
-          padding: 6px;
-          border-radius: 40px;
-        }
-
-        .toggle-btn {
-          padding: 10px 28px;
-          border-radius: 30px;
-          border: none;
-          background: transparent;
-          font-size: 13px;
-          font-weight: 800;
-          color: #9CA3AF;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .toggle-btn.active {
-          background-color: #0B3B2D;
-          color: #FFFFFF;
-        }
-
-        .pricing-cards {
-          display: flex;
-          justify-content: center;
-          gap: 24px;
-          align-items: stretch;
-        }
-
-        .pricing-card {
-          flex: 1;
-          position: relative;
-          border-radius: 40px;
-          padding: 60px 40px 40px;
-          overflow: hidden;
-          transition: transform 0.3s ease;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .white-card {
-          background: #FFFFFF;
-          border: 1px solid #E5E7EB;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-
-        .popular {
-          background-color: #0B3B2D;
-          color: #FFFFFF;
-          transform: scale(1.03);
-          box-shadow: 0 20px 40px rgba(11, 59, 45, 0.2);
-        }
-
-        /* WATERMARK LOGO LOGIC */
-        .card-bg-watermark {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 80%;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .card-bg-watermark img {
-          width: 100%;
-          height: auto;
-          transform: translate(20%, -10%);
-        }
-
-        .watermark-white {
-          opacity: 1; /* Subtle for white cards */
-          filter: brightness(0.5) ;
-        }
-
-        .watermark-green {
-          opacity: 1; /* Lighter green for the green card */
-          filter: brightness(1) ;
-        }
-
-        .popular-tag {
-          position: absolute;
-          top: 25px;
-          right: 35px;
-          background-color: #FFFFFF;
-          color: #0B3B2D;
-          font-size: 11px;
-          font-weight: 900;
-          padding: 6px 14px;
-          border-radius: 20px;
-          z-index: 2;
-        }
-
-        .card-content {
-          position: relative;
-          z-index: 1;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .card-price {
-          display: flex;
-          align-items: baseline;
-          margin-bottom: 10px;
-        }
-
-        .currency {
-          font-size: 38px;
-          font-weight: 800;
-          margin-right: 4px;
-        }
-
-        .amount {
-          font-size: 42px;
-          font-weight: 600;
-          letter-spacing: -2px;
-        }
-
-        .period {
-          font-size: 16px;
-          font-weight: 600;
-          color: #6B7280;
-          margin-left: 4px;
-        }
-
-        .popular .period { color: rgba(255, 255, 255, 0.7); }
-
-        .plan-name {
-          font-size: 24px;
-          font-weight: 600;
-          margin-bottom: 8px;
-        }
-
-        .plan-description {
-          font-size: 12.5px;
-          color: #6B7280;
-          font-weight: 600;
-          margin-bottom: 40px;
-        }
-
-        .popular .plan-description { 
-        color: rgba(255, 255, 255, 0.8);
-        
-        }
-
-        .feature-list {
-          list-style: none;
-          padding: 0;
-          margin: 0 0 40px 0;
-          flex-grow: 1;
-        }
-
-        .feature-item {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 14px;
-          font-weight: 600;
-          margin-bottom: 16px;
-        }
-
-        .check-wrapper {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #E5E7EB;
-          color: #4B5563;
-        }
-
-        .popular .check-wrapper {
-          background: rgba(255, 255, 255, 0.2);
-          color: #FFFFFF;
-        }
-
-        .choose-btn {
-          width: 100%;
-          padding: 16px;
-          border-radius: 40px;
-          border: none;
-          font-size: 14px;
-          font-weight: 800;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .white-card .choose-btn {
-          background-color: #0B3B2D;
-          color: #FFFFFF;
-        }
-
-        .popular .choose-btn {
-          background-color: #FFFFFF;
-          color: #0B3B2D;
-        }
-
-        @media (max-width: 1024px) {
-          .pricing-cards { flex-direction: column; align-items: center; }
-          .pricing-card { width: 100%; max-width: 400px; transform: scale(1) !important; }
-        }
-      `}</style>
     </section>
   );
 };
